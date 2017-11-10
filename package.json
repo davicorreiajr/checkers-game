@@ -1,0 +1,14 @@
+{
+  "name": "checkers-game",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "lodash": "4.17.4",
+    "webpack": "3.8.1"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "node index.js",
+    "webpack": "webpack --config webpack.config.js"
+  }
+}
