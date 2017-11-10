@@ -13,7 +13,7 @@ const server = http.createServer((request, response) => {
 	} else if(/^\/[a-zA-Z0-9\/]*.css$/.test(request.url.toString())){
 		sendFileContent(response, request.url.toString().substring(1), "text/css");
 	} else if (request.url === '/favicon.ico') {
-    sendFileContent(response, "favicon.ico", "image/png")
+    sendFileContent(response, "src/assets/img/favicon.ico", "image/png")
   } else {
     console.log("Requested URL is: " + request.url);
 		response.end();
