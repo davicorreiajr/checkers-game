@@ -1,11 +1,262 @@
-<html>
+<!doctype html>
+<html lang="en">
   <head>
     <title>Checkers game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="src/assets/css/bootstrap.css" />
     <link rel="stylesheet" href="src/assets/css/styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="dist/bundle.js"></script>
   </head>
   <body>
-    <h1>My Header</h1>
-    <p>My paragraph.</p>
+    <h1>Checkers Game</h1>
+    <div>
+      <div class="container scoreboard">
+        <div class="row">
+          <div class="col">
+            <h4>Player turn</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col scoreboard-player scoreboard-player--selected">
+            <p>Player 1</p>
+          </div>
+          <div class="col scoreboard-player">
+            <p>Player 2</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container board">
+        <div class="row board-row">
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece board-piece--black"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece board-piece--black"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece board-piece--white"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece board-piece--white"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece board-piece--white"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div class="board-piece"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container message-container">
+        <div class="row">
+          <div class="col">
+            <p class="message-success">Here goes the messages</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>This is a very simple implementation of Checkers Game, by Davi Cesar Correia Jr.</p>
+        <p>You can see the source code on my <a target="_blank" href="https://github.com/davicorreiajr/checkers-game">repository</a>.</p>
+      </div>
+    </div>
   </body>
 </html>
