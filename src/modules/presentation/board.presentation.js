@@ -1,5 +1,11 @@
-export const Board = {
-  execute: (str) => {
-    console.log(str);
+export const BoardPresentation = (() => {
+  function test(str) {
+    console.log(str + 'module');
   }
-}
+
+  return {
+    test
+  };
+})()
+
+window.BoardPresentation = BoardPresentation;
