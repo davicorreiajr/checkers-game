@@ -14,7 +14,7 @@
   "scripts": {
     "build": "webpack",
     "postinstall": "npm run webpack",
-    "start": "node index.js",
+    "start": "node server.js",
     "webpack": "webpack --config webpack.config.js"
   }
 }
