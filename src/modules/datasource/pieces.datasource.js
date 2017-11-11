@@ -40,5 +40,5 @@ export const PiecesDataSource = (() => {
   return {
     getDarkPiecesLocation,
     getLightPiecesLocation
-  }
+  };
 })()
