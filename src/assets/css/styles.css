@@ -96,3 +96,14 @@ p {
   color: #D50000;
 }
 
+.footer {
+  padding: 8px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #9E9E9E;
+  color: #E0E0E0;
+  font-size: 12px;
+}
+
