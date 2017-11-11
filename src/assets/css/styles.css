@@ -23,6 +23,32 @@ p {
   margin: 0px;
 }
 
+.button {
+  margin-left: 16px;
+  border: 2px solid #8B4513;
+  border-radius: 8px;
+  background-color: #8B4513;
+  color: white;
+  min-width: 150px;
+  min-height: 40px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #995220;
+  outline: none;
+}
+
+
+.button:active {
+  background-color: #7a3f16;
+  outline: none;
+}
+
+.button:focus {
+  outline: none;
+}
+
 .scoreboard {
   margin: 16px;
   max-width: 480px;
