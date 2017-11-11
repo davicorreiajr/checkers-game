@@ -13,6 +13,14 @@ body {
   position: relative;
 }
 
+.board-square--one {
+  background-color: #8B4513;
+}
+
+.board-square--two {
+  background-color: #ffdbc1;
+}
+
 .board-piece {
   margin: 4px;
   position: absolute;
@@ -20,6 +28,13 @@ body {
   right: 0;
   top: 0;
   left: 0;
-  background-color: red;
   border-radius: 100px;
+}
+
+.board-piece--black {
+  background-color: black;
+}
+
+.board-piece--white {
+  background-color: white;
 }
