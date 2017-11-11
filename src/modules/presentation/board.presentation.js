@@ -10,11 +10,13 @@ export const BoardPresentation = (() => {
     Object.keys(lightPiecesLocation).forEach(key => {
       const location = lightPiecesLocation[key];
       addCssClass('board-piece--white', location);
+      addCssClass('cursor-pointer', location);
     });
 
     Object.keys(darkPiecesLocation).forEach(key => {
       const location = darkPiecesLocation[key];
       addCssClass('board-piece--black', location);
+      addCssClass('cursor-pointer', location);
     });
   }
 

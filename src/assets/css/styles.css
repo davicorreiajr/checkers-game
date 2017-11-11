@@ -23,6 +23,10 @@ p {
   margin: 0px;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .button {
   margin-left: 16px;
   border: 2px solid #8B4513;
