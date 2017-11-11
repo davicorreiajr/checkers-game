@@ -4,6 +4,7 @@ import { GetDarkPiecesLocationUseCase } from '../domain/get-dark-pieces-location
 import { SquareBelongsToDarkPieces } from '../domain/square-belongs-to-dark-pieces.use-case';
 import { GetCurrentTurnUseCase } from '../domain/get-current-turn.use-case';
 import { NextTurnUseCase } from '../domain/next-turn.use-case';
+import { ValidateMovementUseCase } from '../domain/validate-movement.use-case';
 
 export const BoardPresentation = (() => {
   let squareSelected;
@@ -28,23 +29,23 @@ export const BoardPresentation = (() => {
   const selectSquare = (squareLocation) => {
     if (!squareSelected) {
       squareSelected = squareLocation;
-      console.log('squareSelected', squareSelected);
     } else {
       tryToMakeTheMove(squareLocation);
     }
   }
 
   const tryToMakeTheMove = (destinationSquare) => {
-    if (true) { // change to verify if this movement is correct
+    if (ValidateMovementUseCase.execute(squareSelected, destinationSquare)) { // change to verify if this movement is correct
       const currentTurn = GetCurrentTurnUseCase.execute();
       const cssClass = currentTurn === Player.one ? 'board-piece--black' : 'board-piece--white';
       removeCssClass(cssClass, squareSelected);
       removeCssClass('cursor-pointer', squareSelected)
       addCssClass(cssClass, destinationSquare);
       addCssClass('cursor-pointer', destinationSquare);
+      NextTurnUseCase.execute(squareSelected, destinationSquare);
       squareSelected = undefined;
-      NextTurnUseCase.execute();
     } else {
+      squareSelected = undefined;
       console.log('wrong movement'); // change to show a msg
     }
   }
