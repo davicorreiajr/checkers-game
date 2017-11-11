@@ -10,4 +10,9 @@ export const PlayerDataSource = (() => {
   const setPlayerTurn = (newTurn) => {
     turn = newTurn;
   }
+
+  return {
+    getPlayerTurn,
+    setPlayerTurn
+  };
 })()
