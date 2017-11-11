@@ -3,6 +3,15 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+h1 {
+  color: #8B4513;
+  font-weight: bold;
+}
+
+h2 {
+  color: #8B4513;
+}
+
 .board-row {
   width: 480px;
 }
