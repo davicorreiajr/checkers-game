@@ -4,12 +4,45 @@ body {
 }
 
 h1 {
+  margin: 16px;
   color: #8B4513;
   font-weight: bold;
 }
 
 h2 {
   color: #8B4513;
+}
+
+h4 {
+  padding: 4px;
+  text-align: center;
+  color: #8B4513;
+}
+
+p {
+  margin: 0px;
+}
+
+.scoreboard {
+  margin: 16px;
+  max-width: 480px;
+  border: 1px solid #8B4513;
+  border-radius: 8px;
+}
+
+.scoreboard-player {
+  padding: 8px;
+  text-align: center;
+}
+
+.scoreboard-player--selected {
+  background-color: #ffdbc1;
+  border: 1px dashed #8B4513;
+  border-radius: 8px
+}
+
+.board {
+  margin: 16px
 }
 
 .board-row {
@@ -23,11 +56,11 @@ h2 {
   position: relative;
 }
 
-.board-square--one {
+.board-square--dark {
   background-color: #8B4513;
 }
 
-.board-square--two {
+.board-square--light {
   background-color: #ffdbc1;
 }
 
@@ -48,3 +81,18 @@ h2 {
 .board-piece--white {
   background-color: white;
 }
+
+.message-container {
+  margin: 16px;
+  max-width: 480px;
+  text-align: center;
+}
+
+.message-success {
+  color: #00C853;
+}
+
+.message-fail {
+  color: #D50000;
+}
+
