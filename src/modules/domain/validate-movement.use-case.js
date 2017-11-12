@@ -16,14 +16,19 @@ export const ValidateMovementUseCase = (() => {
   }
 
   const isPieceGoingToSquareThatBelongsToIt = (destination) => {
-    const possiblePiecesLocation = PlayerDataSource.getPlayerTurn() === Player.one ?
-      PiecesDataSource.getDarkPiecesPossibleLocation() : PiecesDataSource.getLightPiecesPossibleLocation();
-    return arrayContainsItem(possiblePiecesLocation, destination);
+    const possibleLocations = PiecesDataSource.getPossibleLocations()
+    return arrayContainsItem(possibleLocations, destination);
   }
 
   const isPieceGoingToEmptySquare = (destination) => {
-    const currentPiecesLocation = getPiecesLocation();
+    const currentPiecesLocation = x();
     return !arrayContainsItem(Object.values(currentPiecesLocation), destination);
+  }
+
+  const x = () => {
+    const lightPiecesLocation = PiecesDataSource.getLightPiecesLocation();
+    const darkPiecesLocation = PiecesDataSource.getDarkPiecesLocation();
+    return Object.values(lightPiecesLocation).concat(Object.values(darkPiecesLocation));
   }
 
   const isDiagonalMovement = (origin, destination) => {
