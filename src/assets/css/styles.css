@@ -23,6 +23,36 @@ p {
   margin: 0px;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.button {
+  margin-left: 16px;
+  border: 2px solid #8B4513;
+  border-radius: 8px;
+  background-color: #8B4513;
+  color: white;
+  min-width: 150px;
+  min-height: 40px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #995220;
+  outline: none;
+}
+
+
+.button:active {
+  background-color: #7a3f16;
+  outline: none;
+}
+
+.button:focus {
+  outline: none;
+}
+
 .scoreboard {
   margin: 16px;
   max-width: 480px;
@@ -105,5 +135,6 @@ p {
   background-color: #9E9E9E;
   color: #E0E0E0;
   font-size: 12px;
+  text-align: center;
 }
 
