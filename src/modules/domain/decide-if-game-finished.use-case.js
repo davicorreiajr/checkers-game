@@ -1,18 +1,15 @@
 import { BehaviorSubject } from 'rxjs';
 import { PlayerVictorious } from '../shared/constants';
 import { PiecesDataSource } from '../datasource/pieces.datasource';
+import { GameDataSource } from '../datasource/game.datasource';
 
 export const DecideIfGameFinishedUseCase = (() => {
-  let whoWon = new BehaviorSubject(PlayerVictorious.none);
-
   const execute = () => {
     PiecesDataSource.getPieceRemoved()
       .subscribe(
         location => verifyIfGameFinished(location),
         error => console.log(error) // for debug purposes
       );
-    
-    return whoWon;
   }
 
   const verifyIfGameFinished = (location) => {
@@ -28,7 +25,7 @@ export const DecideIfGameFinishedUseCase = (() => {
       .length === 0;
     
     const decision = getFinalDecision(darkPiecesLost, lightPiecesLost);
-    whoWon.next(decision);
+    GameDataSource.setWhoWon(decision);
   }
 
   const getFinalDecision = (darkPiecesLost, lightPiecesLost) => {

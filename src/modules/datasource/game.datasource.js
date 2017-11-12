@@ -11,4 +11,9 @@ export const GameDataSource = (() => {
   const setWhoWon = (decision) => {
     whoWon.next(decision);
   }
+
+  return {
+    getWhoWon,
+    setWhoWon,
+  }
 })()

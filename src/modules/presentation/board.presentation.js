@@ -7,6 +7,7 @@ import { ValidateMovementUseCase } from '../domain/validate-movement.use-case';
 import { DoesSquareContainPieceUseCase } from  '../domain/does-square-contain-piece.use-case';
 import { GetRemovedPieceUseCase } from '../domain/get-removed-piece.use-case';
 import { DecideIfGameFinishedUseCase } from '../domain/decide-if-game-finished.use-case';
+import { GetWhoWonUseCase } from '../domain/get-who-won.use-case';
 
 export const BoardPresentation = (() => {
   let squareSelected;
@@ -29,10 +30,11 @@ export const BoardPresentation = (() => {
   }
 
   const subscribeToGameDecision = () => {
-    DecideIfGameFinishedUseCase.execute()
+    DecideIfGameFinishedUseCase.execute();
+    GetWhoWonUseCase.execute()
       .subscribe(
         decision => console.log(decision),
-        error => console.log(error) // for debug purposes
+        error => console.log(error), // for debug purposes
       );
   }
 
