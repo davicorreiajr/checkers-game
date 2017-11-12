@@ -26,11 +26,9 @@ export const NextTurnUseCase = (() => {
   const updateOpponentPiecesLocation = (origin, destination) => {
     const piecesLocation = getOpponentPiecesLocation();
     const jumpedSquare = GetJumpedSquareUseCase.execute(origin, destination);
-    console.log('jumpedSquare', jumpedSquare);
     if (jumpedSquare > -1) {
       Object.keys(piecesLocation).forEach(key => {
         if (+key === jumpedSquare) {
-          console.log('inside if');
           if (PlayerDataSource.getPlayerTurn() === Player.one) {
             PiecesDataSource.setLightPieceLocation(key, null);
           } else {
@@ -39,9 +37,6 @@ export const NextTurnUseCase = (() => {
         }
       })
     }
-
-    console.log('getOwnPiecesLocation', getOwnPiecesLocation());
-    console.log('getOpponentPiecesLocation', getOpponentPiecesLocation());
   }
 
   const getOwnPiecesLocation = () => {

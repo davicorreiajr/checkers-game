@@ -1,4 +1,8 @@
+import { ReplaySubject } from 'rxjs';
+
 export const PiecesDataSource = (() => {
+  let pieceRemoved = new ReplaySubject();
+
   const darkPiecesLocation = {
     0: 'A1',
     1: 'C1',
@@ -34,6 +38,9 @@ export const PiecesDataSource = (() => {
   }
 
   const setDarkPieceLocation = (piece, location) => {
+    if (!location) {
+      pieceRemoved.next(darkPiecesLocation[piece]);
+    }
     darkPiecesLocation[piece] = location;
   }
 
@@ -42,6 +49,9 @@ export const PiecesDataSource = (() => {
   }
 
   const setLightPieceLocation = (piece, location) => {
+    if (!location) {
+      pieceRemoved.next(lightPiecesLocation[piece]);
+    }
     lightPiecesLocation[piece] = location;
   }
 
@@ -61,6 +71,10 @@ export const PiecesDataSource = (() => {
     ];
   }
 
+  const getPieceRemoved = () => {
+    return pieceRemoved;
+  }
+
   return {
     getDarkPiecesLocation,
     setDarkPieceLocation,
@@ -68,5 +82,6 @@ export const PiecesDataSource = (() => {
     setLightPieceLocation,
     getDarkPiecesPossibleLocation,
     getLightPiecesPossibleLocation,
+    getPieceRemoved
   };
 })()
