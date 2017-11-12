@@ -11,10 +11,9 @@ export const ValidateMovementUseCase = (() => {
       return false;
     }
 
-    console.log('could', CouldPieceDoJumpMovementUseCase.execute(origin));
-
     const correctDirection = PlayerDataSource.getPlayerTurn() === Player.one ? destination[1] > origin[1] : destination[1] < origin[1];
-    return (isDiagonalMovement(origin, destination) && correctDirection) || isJumpMovement(origin, destination);
+    return (isDiagonalMovement(origin, destination) && correctDirection && !couldDoJumpMovement(origin)) ||
+      isJumpMovement(origin, destination);
   }
 
   const isPieceGoingToSquareThatBelongsToIt = (destination) => {
@@ -31,6 +30,10 @@ export const ValidateMovementUseCase = (() => {
 
   const isDiagonalMovement = (origin, destination) => {
     return IsMovementDiagonalUseCase.execute(origin, destination);
+  }
+
+  const couldDoJumpMovement = (origin) => {
+    return CouldPieceDoJumpMovementUseCase.execute(origin);
   }
 
   const isJumpMovement = (origin, destination) => {
