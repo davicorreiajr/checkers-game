@@ -6,6 +6,8 @@ import { GetJumpedSquareUseCase } from './get-jumped-square.use-case';
 import { CouldPieceDoJumpMovementUseCase } from './could-piece-do-jump-movement.use-case';
 
 export const ValidateMovementUseCase = (() => {
+  let destinationOfJump;
+
   const execute = (origin, destination) => {
     if (!isPieceGoingToSquareThatBelongsToIt(destination) || !isPieceGoingToEmptySquare(destination)) {
       return false;
@@ -69,7 +71,8 @@ export const ValidateMovementUseCase = (() => {
   }
 
   const isJumpMovement = (origin, destination) => {
-    return GetJumpedSquareUseCase.execute(origin, destination) > -1;
+    return GetJumpedSquareUseCase.execute(origin, destination);
+
   }
 
   const getPiecesLocation = () => {

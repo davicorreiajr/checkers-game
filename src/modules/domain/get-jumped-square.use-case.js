@@ -5,11 +5,11 @@ import { PlayerDataSource } from '../datasource/player.datasource';
 export const GetJumpedSquareUseCase = (() => {
   const execute = (origin, destination) => {
     if (isDestinationOutOfBoard(destinationBoardLetter, destinationBoardNumber)) {
-      return -1;
+      return undefined;
     }
 
     if (!isJumpMovement(origin, destination)) {
-      return -1;
+      return undefined;
     }
     const originBoardLetter = origin[0].charCodeAt(0);
     const originBoardNumber = +origin[1];
@@ -20,7 +20,8 @@ export const GetJumpedSquareUseCase = (() => {
     const jumpedNumber = ((destinationBoardNumber + originBoardNumber) / 2).toString()
 
     const locationJumped = jumpedLetter + jumpedNumber;
-    return Object.values(getOpponentPieces(PlayerDataSource.getPlayerTurn())).indexOf(locationJumped);
+    return Object.values(getOpponentPieces(PlayerDataSource.getPlayerTurn())).indexOf(locationJumped) > -1 ?
+      locationJumped : undefined;
   }
 
   const isDestinationOutOfBoard = (destinationLetter, destinationNumber) => {

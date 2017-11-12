@@ -27,9 +27,9 @@ export const NextTurnUseCase = (() => {
 
   const updateOpponentPiecesLocation = (jumpedSquare) => {
     const piecesLocation = getOpponentPiecesLocation();
-    if (jumpedSquare > -1) {
+    if (jumpedSquare) {
       Object.keys(piecesLocation).forEach(key => {
-        if (+key === jumpedSquare) {
+        if (piecesLocation[key] === jumpedSquare) {
           if (PlayerDataSource.getPlayerTurn() === Player.one) {
             PiecesDataSource.setLightPieceLocation(key, null);
           } else {
