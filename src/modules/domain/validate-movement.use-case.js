@@ -3,12 +3,15 @@ import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
 import { IsMovementDiagonalUseCase } from './is-movement-diagonal.use-case';
 import { GetJumpedSquareUseCase } from './get-jumped-square.use-case';
+import { CouldPieceDoJumpMovementUseCase } from './could-piece-do-jump-movement.use-case';
 
 export const ValidateMovementUseCase = (() => {
   const execute = (origin, destination) => {
     if (!isPieceGoingToSquareThatBelongsToIt(destination) || !isPieceGoingToEmptySquare(destination)) {
       return false;
     }
+
+    console.log('could', CouldPieceDoJumpMovementUseCase.execute(origin));
 
     const correctDirection = PlayerDataSource.getPlayerTurn() === Player.one ? destination[1] > origin[1] : destination[1] < origin[1];
     return (isDiagonalMovement(origin, destination) && correctDirection) || isJumpMovement(origin, destination);
