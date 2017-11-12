@@ -1,4 +1,4 @@
-import { Player } from '../shared/constants';
+import { Player, PlayerVictorious } from '../shared/constants';
 import { GetLightPiecesLocationUseCase } from '../domain/get-light-pieces-location.use-case';
 import { GetDarkPiecesLocationUseCase } from '../domain/get-dark-pieces-location.use-case';
 import { GetCurrentTurnUseCase } from '../domain/get-current-turn.use-case';
@@ -33,9 +33,21 @@ export const BoardPresentation = (() => {
     DecideIfGameFinishedUseCase.execute();
     GetWhoWonUseCase.execute()
       .subscribe(
-        decision => console.log(decision),
+        decision => decideIfShowFinalGameMessage(decision),
         error => console.log(error), // for debug purposes
       );
+  }
+
+  const decideIfShowFinalGameMessage = (decision) => {
+    if (decision === PlayerVictorious.none) {
+      return;
+    } else if (decision === PlayerVictorious.one) {
+      document.getElementById('finalDecision').innerHTML = '<h4 class="final-decision">Player with dark pieces won!</h4>';
+    } else if (decision === PlayerVictorious.two) {
+      document.getElementById('finalDecision').innerHTML = '<h4 class="final-decision">Player with light pieces won!</h4>';
+    } else {
+      document.getElementById('finalDecision').innerHTML = '<h4 class="final-decision">The game is a draw.</h4>'
+    }
   }
 
   const setPiecesLocation = () => {
