@@ -24,19 +24,19 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
 
   const getNeighborSquares = (square) => {
     return {
-      se: getSoutheastDiagonal(square, 1),
-      ne: getNortheastDiagonal(square, 1),
-      nw: getNorthwestDiagonal(square, 1),
-      sw: getSouthwestDiagonal(square, 1),
+      se: getNSoutheastDiagonal(square, 1),
+      ne: getNNortheastDiagonal(square, 1),
+      nw: getNNorthwestDiagonal(square, 1),
+      sw: getNSouthwestDiagonal(square, 1),
     };
   }
 
   const getJumpedSquareMap = (square) => {
     return {
-      se: getSoutheastDiagonal(square, 2),
-      ne: getNortheastDiagonal(square, 2),
-      nw: getNorthwestDiagonal(square, 2),
-      sw: getSouthwestDiagonal(square, 2),
+      se: getNSoutheastDiagonal(square, 2),
+      ne: getNNortheastDiagonal(square, 2),
+      nw: getNNorthwestDiagonal(square, 2),
+      sw: getNSouthwestDiagonal(square, 2),
     }
   }
 
@@ -54,7 +54,7 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
     return array.indexOf(item) != -1;
   }
 
-  const getSoutheastDiagonal = (pieceLocation, n) => {
+  const getNSoutheastDiagonal = (pieceLocation, n) => {
     const locationLetter = pieceLocation[0].charCodeAt(0);
     const locationNumber = +pieceLocation[1];
 
@@ -65,7 +65,7 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
       undefined : String.fromCharCode(newLocationLetter) + newLocationNumber.toString();
   }
 
-  const getNortheastDiagonal = (pieceLocation, n) => {
+  const getNNortheastDiagonal = (pieceLocation, n) => {
     const locationLetter = pieceLocation[0].charCodeAt(0);
     const locationNumber = +pieceLocation[1];
 
@@ -76,7 +76,7 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
       undefined : String.fromCharCode(newLocationLetter) + newLocationNumber.toString();
   }
 
-  const getNorthwestDiagonal = (pieceLocation, n) => {
+  const getNNorthwestDiagonal = (pieceLocation, n) => {
     const locationLetter = pieceLocation[0].charCodeAt(0);
     const locationNumber = +pieceLocation[1];
 
@@ -87,7 +87,7 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
       undefined : String.fromCharCode(newLocationLetter) + newLocationNumber.toString();
   }
 
-  const getSouthwestDiagonal = (pieceLocation, n) => {
+  const getNSouthwestDiagonal = (pieceLocation, n) => {
     const locationLetter = pieceLocation[0].charCodeAt(0);
     const locationNumber = +pieceLocation[1];
 
