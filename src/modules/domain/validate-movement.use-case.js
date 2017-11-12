@@ -2,7 +2,8 @@ import { Player } from '../shared/constants';
 import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
 import { IsMovementDiagonalUseCase } from './is-movement-diagonal.use-case';
-import { IsJumpMovementUseCase } from './is-jump-movement.use-case';
+import { GetJumpedSquareUseCase } from './get-jumped-square.use-case';
+import { CouldPieceDoJumpMovementUseCase } from './could-piece-do-jump-movement.use-case';
 
 export const ValidateMovementUseCase = (() => {
   const execute = (origin, destination) => {
@@ -11,7 +12,8 @@ export const ValidateMovementUseCase = (() => {
     }
 
     const correctDirection = PlayerDataSource.getPlayerTurn() === Player.one ? destination[1] > origin[1] : destination[1] < origin[1];
-    return (isDiagonalMovement(origin, destination) && correctDirection) || isJumpMovement(origin, destination);
+    return (isDiagonalMovement(origin, destination) && correctDirection && !couldDoJumpMovement(origin)) ||
+      isJumpMovement(origin, destination);
   }
 
   const isPieceGoingToSquareThatBelongsToIt = (destination) => {
@@ -30,8 +32,12 @@ export const ValidateMovementUseCase = (() => {
     return IsMovementDiagonalUseCase.execute(origin, destination);
   }
 
+  const couldDoJumpMovement = (origin) => {
+    return CouldPieceDoJumpMovementUseCase.execute(origin);
+  }
+
   const isJumpMovement = (origin, destination) => {
-    return IsJumpMovementUseCase.execute(origin, destination);
+    return GetJumpedSquareUseCase.execute(origin, destination) > -1;
   }
 
   const arrayContainsItem = (array, item) => {

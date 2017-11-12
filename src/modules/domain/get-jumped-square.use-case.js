@@ -2,7 +2,7 @@ import { Player } from '../shared/constants';
 import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
 
-export const IsJumpMovementUseCase = (() => {
+export const GetJumpedSquareUseCase = (() => {
   const execute = (origin, destination) => {
     const originBoardLetter = origin[0].charCodeAt(0);
     const originBoardNumber = +origin[1];
@@ -11,19 +11,19 @@ export const IsJumpMovementUseCase = (() => {
 
     if (originBoardLetter === destinationBoardLetter) {
       if (Math.abs(originBoardNumber - destinationBoardNumber) !== 2) {
-        return false
+        return -1;
       }
       const locationJumped = String.fromCharCode(originBoardLetter) + ((originBoardNumber+destinationBoardNumber)/2).toString();
-      return Object.values(getOpponentPieces(PlayerDataSource.getPlayerTurn())).indexOf(locationJumped) > -1
+      return Object.values(getOpponentPieces(PlayerDataSource.getPlayerTurn())).indexOf(locationJumped);
     } else if (originBoardNumber === destinationBoardNumber) {
       if (Math.abs(originBoardLetter - destinationBoardLetter) !== 2) {
-        return false
+        return -1;
       }
       const locationJumped = String.fromCharCode((originBoardLetter+destinationBoardLetter)/2) + originBoardNumber.toString();
-      return Object.values(getOpponentPieces(PlayerDataSource.getPlayerTurn())).indexOf(locationJumped) > -1
+      return Object.values(getOpponentPieces(PlayerDataSource.getPlayerTurn())).indexOf(locationJumped);
     }
 
-    return false;
+    return -1;;
   }
 
   const getOpponentPieces = (turn) => {

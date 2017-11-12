@@ -1,13 +1,54 @@
-import { Player } from '../shared/constants';
+import { Player, PlayerVictorious } from '../shared/constants';
 import { GetLightPiecesLocationUseCase } from '../domain/get-light-pieces-location.use-case';
 import { GetDarkPiecesLocationUseCase } from '../domain/get-dark-pieces-location.use-case';
 import { GetCurrentTurnUseCase } from '../domain/get-current-turn.use-case';
 import { NextTurnUseCase } from '../domain/next-turn.use-case';
 import { ValidateMovementUseCase } from '../domain/validate-movement.use-case';
 import { DoesSquareContainPieceUseCase } from  '../domain/does-square-contain-piece.use-case';
+import { GetRemovedPieceUseCase } from '../domain/get-removed-piece.use-case';
+import { DecideIfGameFinishedUseCase } from '../domain/decide-if-game-finished.use-case';
+import { GetWhoWonUseCase } from '../domain/get-who-won.use-case';
 
 export const BoardPresentation = (() => {
   let squareSelected;
+
+  const onInit = () => {
+    window.onload = subscribeToRemovedPieces();
+    window.onload = subscribeToGameDecision();
+  }
+
+  const subscribeToRemovedPieces = () => {
+    GetRemovedPieceUseCase.execute()
+      .subscribe(
+        location => {
+          removeCssClass('board-piece--white', location);
+          removeCssClass('board-piece--black', location);
+          removeCssClass('cursor-pointer', location);
+        },
+        error => console.log(error), // for debug purposes
+      );
+  }
+
+  const subscribeToGameDecision = () => {
+    DecideIfGameFinishedUseCase.execute();
+    GetWhoWonUseCase.execute()
+      .subscribe(
+        decision => decideIfShowFinalGameMessage(decision),
+        error => console.log(error), // for debug purposes
+      );
+  }
+
+  const decideIfShowFinalGameMessage = (decision) => {
+    if (decision === PlayerVictorious.none) {
+      return;
+    } else if (decision === PlayerVictorious.one) {
+      document.getElementById('finalDecision').innerHTML = '<h4 class="final-decision">Player with dark pieces won!</h4>';
+    } else if (decision === PlayerVictorious.two) {
+      document.getElementById('finalDecision').innerHTML = '<h4 class="final-decision">Player with light pieces won!</h4>';
+    } else {
+      document.getElementById('finalDecision').innerHTML = '<h4 class="final-decision">The game is a draw.</h4>'
+    }
+  }
 
   const setPiecesLocation = () => {
     const lightPiecesLocation = GetLightPiecesLocationUseCase.execute();
@@ -39,10 +80,12 @@ export const BoardPresentation = (() => {
       const currentTurn = GetCurrentTurnUseCase.execute();
       const cssClass = currentTurn === Player.one ? 'board-piece--black' : 'board-piece--white';
       removeCssClass(cssClass, squareSelected);
-      removeCssClass('cursor-pointer', squareSelected)
+      removeCssClass('cursor-pointer', squareSelected);
       addCssClass(cssClass, destinationSquare);
       addCssClass('cursor-pointer', destinationSquare);
       NextTurnUseCase.execute(squareSelected, destinationSquare);
+      updateTurnBoard();
+      setPiecesLocation();
       squareSelected = undefined;
     } else {
       squareSelected = undefined;
@@ -50,15 +93,30 @@ export const BoardPresentation = (() => {
     }
   }
 
+  const updateTurnBoard = () => {
+    const currentTurn = GetCurrentTurnUseCase.execute();
+    addCssClass('scoreboard-player--selected', currentTurn);
+    Object.values(Player).forEach(value => {
+      if (value !== currentTurn) {
+        removeCssClass('scoreboard-player--selected', value);
+      }
+    })
+  }
+
   const addCssClass = (cssClass, elementId) => {
-    document.getElementById(elementId).classList.add(cssClass);
+    if (elementId) {
+      document.getElementById(elementId).classList.add(cssClass);
+    }
   }
 
   const removeCssClass = (cssClass, elementId) => {
-    document.getElementById(elementId).classList.remove(cssClass);
+    if (elementId) {
+      document.getElementById(elementId).classList.remove(cssClass);
+    }
   }
 
   return {
+    onInit,
     setPiecesLocation,
     selectSquare
   };

@@ -126,6 +126,11 @@ p {
   color: #D50000;
 }
 
+.final-decision {
+  text-align: left;
+  margin: 16px;
+}
+
 .footer {
   padding: 8px;
   position: fixed;
