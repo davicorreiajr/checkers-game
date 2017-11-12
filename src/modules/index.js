@@ -1,3 +1,5 @@
 import { BoardPresentation } from './presentation/board.presentation';
 
-BoardPresentation.onInit();
+console.log('BLAAA');
+
+window.onload = BoardPresentation.onInit();

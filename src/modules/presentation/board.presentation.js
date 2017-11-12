@@ -13,8 +13,8 @@ export const BoardPresentation = (() => {
   let squareSelected;
 
   const onInit = () => {
-    window.onload = subscribeToRemovedPieces();
-    window.onload = subscribeToGameDecision();
+    subscribeToRemovedPieces();
+    subscribeToGameDecision();
   }
 
   const subscribeToRemovedPieces = () => {
