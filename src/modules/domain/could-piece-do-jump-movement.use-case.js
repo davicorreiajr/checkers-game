@@ -1,7 +1,7 @@
 import { Player, BoardLimits } from '../shared/constants'
 import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
-import { DoesSquareContainPieceUseCase } from './does-square-contain-piece.use-case';\
+import { DoesSquareContainPieceUseCase } from './does-square-contain-piece.use-case';
 
 export const CouldPieceDoJumpMovementUseCase = (() => {
   const execute = (origin) => {
