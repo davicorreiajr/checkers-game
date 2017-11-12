@@ -60,7 +60,7 @@ export const BoardPresentation = (() => {
       addCssClass(cssClass, destinationSquare);
       addCssClass('cursor-pointer', destinationSquare);
       NextTurnUseCase.execute(squareSelected, destinationSquare);
-      updateScore();
+      updateTurnBoard();
       setPiecesLocation();
       squareSelected = undefined;
     } else {
@@ -69,7 +69,7 @@ export const BoardPresentation = (() => {
     }
   }
 
-  const updateScore = () => {
+  const updateTurnBoard = () => {
     const currentTurn = GetCurrentTurnUseCase.execute();
     addCssClass('scoreboard-player--selected', currentTurn);
     Object.values(Player).forEach(value => {
