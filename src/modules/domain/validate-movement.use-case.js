@@ -6,8 +6,13 @@ export const ValidateMovementUseCase = (() => {
   const execute = (origin, destination) => {
     const possiblePiecesLocation = PlayerDataSource.getPlayerTurn() === Player.one ?
       PiecesDataSource.getDarkPiecesPossibleLocation() : PiecesDataSource.getLightPiecesPossibleLocation();
-    
     if (!arrayContainsItem(possiblePiecesLocation, destination)) {
+      return false;
+    }
+
+    const currentPiecesLocation = PlayerDataSource.getPlayerTurn() === Player.one ?
+      PiecesDataSource.getDarkPiecesLocation() : PiecesDataSource.getLightPiecesLocation();  
+    if (arrayContainsItem(Object.values(currentPiecesLocation), destination)) {
       return false;
     }
 
