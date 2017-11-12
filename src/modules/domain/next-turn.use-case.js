@@ -2,6 +2,7 @@ import { Player } from '../shared/constants';
 import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
 import { GetJumpedSquareUseCase } from './get-jumped-square.use-case';
+import { CouldPieceDoJumpMovementUseCase } from './could-piece-do-jump-movement.use-case';
 
 export const NextTurnUseCase = (() => {
   const execute = (origin, destination) => {
@@ -9,7 +10,7 @@ export const NextTurnUseCase = (() => {
 
     const jumpedSquare = GetJumpedSquareUseCase.execute(origin, destination);
     updateOpponentPiecesLocation(jumpedSquare);
-    setTurn(jumpedSquare);
+    setTurn(jumpedSquare, destination);
   }
 
   const updateOwnPiecesLocation = (origin, destination) => {
@@ -48,8 +49,9 @@ export const NextTurnUseCase = (() => {
     return PlayerDataSource.getPlayerTurn() === Player.one ? PiecesDataSource.getLightPiecesLocation() : PiecesDataSource.getDarkPiecesLocation();
   }
 
-  const setTurn = (jumpedSquare) => {
-    const nextTurn = jumpedSquare > -1 ?
+  const setTurn = (jumpedSquare, destination) => {
+    const shouldKeepTurn = jumpedSquare && CouldPieceDoJumpMovementUseCase.execute(destination);
+    const nextTurn = shouldKeepTurn ?
       PlayerDataSource.getPlayerTurn() : changeTurn();
     PlayerDataSource.setPlayerTurn(nextTurn);
   }
