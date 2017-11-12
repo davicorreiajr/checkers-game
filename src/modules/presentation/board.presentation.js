@@ -45,8 +45,6 @@ export const BoardPresentation = (() => {
       document.getElementById('finalDecision').innerHTML = '<h4 class="final-decision">Player with dark pieces won!</h4>';
     } else if (decision === PlayerVictorious.two) {
       document.getElementById('finalDecision').innerHTML = '<h4 class="final-decision">Player with light pieces won!</h4>';
-    } else {
-      document.getElementById('finalDecision').innerHTML = '<h4 class="final-decision">The game is a draw.</h4>'
     }
   }
 
