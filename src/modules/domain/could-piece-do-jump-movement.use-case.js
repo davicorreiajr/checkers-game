@@ -3,9 +3,6 @@ import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
 import { DoesSquareContainPieceUseCase } from './does-square-contain-piece.use-case';
 
-const originBoardLetter = origin[0].charCodeAt(0);
-const originBoardNumber = +origin[1];
-
 export const CouldPieceDoJumpMovementUseCase = (() => {
   const execute = (origin) => {
     let couldPieceDoJumpMovement = false;
