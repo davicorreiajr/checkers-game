@@ -8,23 +8,23 @@ export const DecideIfGameFinishedUseCase = (() => {
   const execute = () => {
     PiecesDataSource.getPieceRemoved()
       .subscribe(
-        location => verifyIfGameFinished(),
+        location => verifyIfGameFinished(location),
         error => console.log(error) // for debug purposes
       );
     
     return whoWon;
   }
 
-  const verifyIfGameFinished = () => {
+  const verifyIfGameFinished = (location) => {
     const darkPiecesLocation = getDarkPiecesLocation();
     const lightPiecesLocation = getLightPiecesLocation();
 
     const darkPiecesLost = Object.keys(darkPiecesLocation)
-      .filter(key => darkPiecesLocation[key]) // filter no falsy items
+      .filter(key => darkPiecesLocation[key] && darkPiecesLocation[key] !== location)
       .length === 0;
     
     const lightPiecesLost = Object.keys(lightPiecesLocation)
-      .filter(key => lightPiecesLocation[key]) // filter no falsy items
+      .filter(key => lightPiecesLocation[key] && lightPiecesLocation[key] !== location)
       .length === 0;
     
     const decision = getFinalDecision(darkPiecesLost, lightPiecesLost);

@@ -6,12 +6,14 @@ import { NextTurnUseCase } from '../domain/next-turn.use-case';
 import { ValidateMovementUseCase } from '../domain/validate-movement.use-case';
 import { DoesSquareContainPieceUseCase } from  '../domain/does-square-contain-piece.use-case';
 import { GetRemovedPieceUseCase } from '../domain/get-removed-piece.use-case';
+import { DecideIfGameFinishedUseCase } from '../domain/decide-if-game-finished.use-case';
 
 export const BoardPresentation = (() => {
   let squareSelected;
 
   const onInit = () => {
     window.onload = subscribeToRemovedPieces();
+    window.onload = subscribeToGameDecision();
   }
 
   const subscribeToRemovedPieces = () => {
@@ -23,7 +25,15 @@ export const BoardPresentation = (() => {
           removeCssClass('cursor-pointer', location);
         },
         error => console.log(error), // for debug purposes
-      )
+      );
+  }
+
+  const subscribeToGameDecision = () => {
+    DecideIfGameFinishedUseCase.execute()
+      .subscribe(
+        decision => console.log(decision),
+        error => console.log(error) // for debug purposes
+      );
   }
 
   const setPiecesLocation = () => {
