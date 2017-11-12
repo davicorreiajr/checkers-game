@@ -12,7 +12,7 @@ export const ValidateMovementUseCase = (() => {
     }
 
     const correctDirection = PlayerDataSource.getPlayerTurn() === Player.one ? destination[1] > origin[1] : destination[1] < origin[1];
-    return (isDiagonalMovement(origin, destination) && correctDirection && !couldDoJumpMovement(origin)) ||
+    return (isDiagonalMovement(origin, destination) && correctDirection && !shouldDoJumpMovement()) ||
       isJumpMovement(origin, destination);
   }
 
@@ -29,6 +29,19 @@ export const ValidateMovementUseCase = (() => {
 
   const isDiagonalMovement = (origin, destination) => {
     return IsMovementDiagonalUseCase.execute(origin, destination);
+  }
+
+  const shouldDoJumpMovement = () => {
+    const currentPiecesLocation = Object.values(getPiecesLocation());
+    let response = false;
+
+    currentPiecesLocation
+      .filter(location => location) // remove falsy locations
+      .forEach(location => {
+        response = couldDoJumpMovement(location) ? true : response;
+      })
+
+    return response;
   }
 
   const couldDoJumpMovement = (origin) => {
