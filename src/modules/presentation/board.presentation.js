@@ -10,7 +10,7 @@ import { GetRemovedPieceUseCase } from '../domain/get-removed-piece.use-case';
 export const BoardPresentation = (() => {
   let squareSelected;
 
-  const onStart = () => {
+  const onInit = () => {
     window.onload = subscribeToRemovedPieces();
   }
 
@@ -92,7 +92,7 @@ export const BoardPresentation = (() => {
   }
 
   return {
-    onStart,
+    onInit,
     setPiecesLocation,
     selectSquare
   };
