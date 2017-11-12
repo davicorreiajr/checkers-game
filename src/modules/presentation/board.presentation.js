@@ -26,7 +26,7 @@ export const BoardPresentation = (() => {
           removeCssClass('board-piece--black', location);
           removeCssClass('cursor-pointer', location);
         },
-        error => console.log(error), // for debug purposes
+        error => console.log(error) // for debug purposes
       );
   }
 
