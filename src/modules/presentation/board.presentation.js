@@ -26,7 +26,7 @@ export const BoardPresentation = (() => {
           removeCssClass('board-piece--black', location);
           removeCssClass('cursor-pointer', location);
         },
-        error => console.log(error) // for debug purposes
+        error => console.log(error), // for debug purposes
       );
   }
 
@@ -35,7 +35,7 @@ export const BoardPresentation = (() => {
     GetWhoWonUseCase.execute()
       .subscribe(
         decision => decideIfShowFinalGameMessage(decision),
-        error => console.log(error) // for debug purposes
+        error => console.log(error), // for debug purposes
       );
   }
 
