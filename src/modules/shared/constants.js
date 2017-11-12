@@ -9,3 +9,10 @@ export const BoardLimits = {
   top: 8,
   left: 'A',
 }
+
+export const PlayerVictorious = {
+  one: 'darkPieces',
+  two: 'lightPieces',
+  none: 'none',
+  draw: 'draw',
+}
