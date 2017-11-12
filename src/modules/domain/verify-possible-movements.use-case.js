@@ -1,5 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 import { PlayerVictorious, Player, BoardLimits } from '../shared/constants';
+import { CalculateSquare } from '../shared/calculate-square';
 import { PlayerDataSource } from '../datasource/player.datasource';
 import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { CouldPieceDoJumpMovementUseCase } from './could-piece-do-jump-movement.use-case';
@@ -56,12 +57,12 @@ export const VerifyPossibleMovementsUseCase = (() => {
     const locationLetter = pieceLocation[0].charCodeAt(0);
     const locationNumber = +pieceLocation[1];
 
-    response.push(getNortheastDiagonal(pieceLocation));
-    response.push(getNorthwestDiagonal(pieceLocation));
+    response.push(CalculateSquare.getNNortheastDiagonal(pieceLocation, 1));
+    response.push(CalculateSquare.getNNorthwestDiagonal(pieceLocation, 1));
 
     if (allowBackwardsMovement) {
-      response.push(getSoutheastDiagonal(pieceLocation));
-      response.push(getSouthwestDiagonal(pieceLocation));
+      response.push(CalculateSquare.getNSoutheastDiagonal(pieceLocation, 1));
+      response.push(CalculateSquare.getNSouthwestDiagonal(pieceLocation, 1));
     }
 
     return response.filter(location => location); // remove falsy elements
@@ -77,12 +78,12 @@ export const VerifyPossibleMovementsUseCase = (() => {
     const locationLetter = pieceLocation[0].charCodeAt(0);
     const locationNumber = +pieceLocation[1];
 
-    response.push(getSoutheastDiagonal(pieceLocation));
-    response.push(getSouthwestDiagonal(pieceLocation));
+    response.push(CalculateSquare.getNSoutheastDiagonal(pieceLocation, 1));
+    response.push(CalculateSquare.getNSouthwestDiagonal(pieceLocation, 1));
 
     if (allowBackwardsMovement) {
-      response.push(getNortheastDiagonal(pieceLocation));
-      response.push(getNorthwestDiagonal(pieceLocation));
+      response.push(CalculateSquare.getNNortheastDiagonal(pieceLocation, 1));
+      response.push(CalculateSquare.getNNorthwestDiagonal(pieceLocation, 1));
     }
 
     return response.filter(location => location); // remove falsy elements
@@ -95,50 +96,6 @@ export const VerifyPossibleMovementsUseCase = (() => {
   const getPiecesLocation = (turn) => {
     return turn === Player.one ?
       PiecesDataSource.getDarkPiecesLocation() : PiecesDataSource.getLightPiecesLocation();
-  }
-
-  const getSoutheastDiagonal = (pieceLocation) => {
-    const locationLetter = pieceLocation[0].charCodeAt(0);
-    const locationNumber = +pieceLocation[1];
-
-    const newLocationLetter = locationLetter + 1;
-    const newLocationNumber = locationNumber - 1;
-
-    return newLocationLetter > BoardLimits.right.charCodeAt(0) || newLocationNumber < BoardLimits.bottom ?
-      undefined : String.fromCharCode(newLocationLetter) + newLocationNumber.toString();
-  }
-
-  const getNortheastDiagonal = (pieceLocation) => {
-    const locationLetter = pieceLocation[0].charCodeAt(0);
-    const locationNumber = +pieceLocation[1];
-
-    const newLocationLetter = locationLetter + 1;
-    const newLocationNumber = locationNumber + 1;
-
-    return newLocationLetter > BoardLimits.right.charCodeAt(0) || newLocationNumber > BoardLimits.top ?
-      undefined : String.fromCharCode(newLocationLetter) + newLocationNumber.toString();
-  }
-
-  const getNorthwestDiagonal = (pieceLocation) => {
-    const locationLetter = pieceLocation[0].charCodeAt(0);
-    const locationNumber = +pieceLocation[1];
-
-    const newLocationLetter = locationLetter - 1;
-    const newLocationNumber = locationNumber + 1;
-
-    return newLocationLetter < BoardLimits.left.charCodeAt(0) || newLocationNumber > BoardLimits.top ?
-      undefined : String.fromCharCode(newLocationLetter) + newLocationNumber.toString();
-  }
-
-  const getSouthwestDiagonal = (pieceLocation) => {
-    const locationLetter = pieceLocation[0].charCodeAt(0);
-    const locationNumber = +pieceLocation[1];
-
-    const newLocationLetter = locationLetter - 1;
-    const newLocationNumber = locationNumber - 1;
-
-    return newLocationLetter < BoardLimits.left.charCodeAt(0) || newLocationNumber < BoardLimits.bottom ?
-      undefined : String.fromCharCode(newLocationLetter) + newLocationNumber.toString();
   }
 
   return { execute };
