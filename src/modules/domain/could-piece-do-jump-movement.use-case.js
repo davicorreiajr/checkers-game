@@ -1,10 +1,7 @@
 import { Player, BoardLimits } from '../shared/constants'
 import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
-import { DoesSquareContainPieceUseCase } from './does-square-contain-piece.use-case';
-
-const originBoardLetter = origin[0].charCodeAt(0);
-const originBoardNumber = +origin[1];
+import { DoesSquareContainPieceUseCase } from './does-square-contain-piece.use-case';\
 
 export const CouldPieceDoJumpMovementUseCase = (() => {
   const execute = (origin) => {
