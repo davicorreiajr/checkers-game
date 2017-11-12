@@ -43,11 +43,22 @@ export const BoardPresentation = (() => {
       addCssClass(cssClass, destinationSquare);
       addCssClass('cursor-pointer', destinationSquare);
       NextTurnUseCase.execute(squareSelected, destinationSquare);
+      updateScore();
       squareSelected = undefined;
     } else {
       squareSelected = undefined;
       console.log('wrong movement'); // change to show a msg
     }
+  }
+
+  const updateScore = () => {
+    const currentTurn = GetCurrentTurnUseCase.execute();
+    addCssClass('scoreboard-player--selected', currentTurn);
+    Object.values(Player).forEach(value => {
+      if (value !== currentTurn) {
+        removeCssClass('scoreboard-player--selected', value);
+      }
+    })
   }
 
   const addCssClass = (cssClass, elementId) => {
