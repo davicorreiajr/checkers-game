@@ -13,16 +13,29 @@ export const BoardPresentation = (() => {
     const lightPiecesLocation = GetLightPiecesLocationUseCase.execute();
     const darkPiecesLocation = GetDarkPiecesLocationUseCase.execute();
 
+    console.log('lightPiecesLocation', lightPiecesLocation);
+    console.log('darkPiecesLocation', darkPiecesLocation);
+
     Object.keys(lightPiecesLocation).forEach(key => {
       const location = lightPiecesLocation[key];
-      addCssClass('board-piece--white', location);
-      addCssClass('cursor-pointer', location);
+      if (location) {
+        addCssClass('board-piece--white', location);
+        addCssClass('cursor-pointer', location);
+      } else {
+        removeCssClass('board-piece--white', location);
+        removeCssClass('cursor-pointer', location);
+      }
     });
 
     Object.keys(darkPiecesLocation).forEach(key => {
       const location = darkPiecesLocation[key];
-      addCssClass('board-piece--black', location);
-      addCssClass('cursor-pointer', location);
+      if (location) {
+        addCssClass('board-piece--black', location);
+        addCssClass('cursor-pointer', location);
+      } else {
+        removeCssClass('board-piece--black', location);
+        removeCssClass('cursor-pointer', location);
+      }
     });
   }
 
@@ -44,6 +57,7 @@ export const BoardPresentation = (() => {
       addCssClass('cursor-pointer', destinationSquare);
       NextTurnUseCase.execute(squareSelected, destinationSquare);
       updateScore();
+      setPiecesLocation();
       squareSelected = undefined;
     } else {
       squareSelected = undefined;
@@ -62,11 +76,15 @@ export const BoardPresentation = (() => {
   }
 
   const addCssClass = (cssClass, elementId) => {
-    document.getElementById(elementId).classList.add(cssClass);
+    if (elementId) {
+      document.getElementById(elementId).classList.add(cssClass);
+    }
   }
 
   const removeCssClass = (cssClass, elementId) => {
-    document.getElementById(elementId).classList.remove(cssClass);
+    if (elementId) {
+      document.getElementById(elementId).classList.remove(cssClass);
+    }
   }
 
   return {
