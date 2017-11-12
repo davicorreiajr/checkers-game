@@ -23,8 +23,7 @@ export const ValidateMovementUseCase = (() => {
   }
 
   const isPieceGoingToEmptySquare = (destination) => {
-    const currentPiecesLocation = PlayerDataSource.getPlayerTurn() === Player.one ?
-      PiecesDataSource.getDarkPiecesLocation() : PiecesDataSource.getLightPiecesLocation();  
+    const currentPiecesLocation = getPiecesLocation();
     return !arrayContainsItem(Object.values(currentPiecesLocation), destination);
   }
 
@@ -38,6 +37,11 @@ export const ValidateMovementUseCase = (() => {
 
   const isJumpMovement = (origin, destination) => {
     return GetJumpedSquareUseCase.execute(origin, destination) > -1;
+  }
+
+  const getPiecesLocation = () => {
+    return PlayerDataSource.getPlayerTurn() === Player.one ?
+      PiecesDataSource.getDarkPiecesLocation() : PiecesDataSource.getLightPiecesLocation();
   }
 
   const arrayContainsItem = (array, item) => {
