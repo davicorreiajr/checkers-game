@@ -24,19 +24,19 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
 
   const getNeighborSquares = (square) => {
     return {
-      bottom: getNSquaresBottom(square, 1),
-      right: getNSquaresRight(square, 1),
-      top: getNSquaresTop(square, 1),
-      left: getNSquaresLeft(square, 1),
+      se: getSoutheastDiagonal(square, 1),
+      ne: getNortheastDiagonal(square, 1),
+      nw: getNorthwestDiagonal(square, 1),
+      sw: getSouthwestDiagonal(square, 1),
     };
   }
 
   const getJumpedSquareMap = (square) => {
     return {
-      bottom: getNSquaresBottom(square, 2),
-      right: getNSquaresRight(square, 2),
-      top: getNSquaresTop(square, 2),
-      left: getNSquaresLeft(square, 2),
+      se: getSoutheastDiagonal(square, 2),
+      ne: getNortheastDiagonal(square, 2),
+      nw: getNorthwestDiagonal(square, 2),
+      sw: getSouthwestDiagonal(square, 2),
     }
   }
 
@@ -54,7 +54,7 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
     return array.indexOf(item) != -1;
   }
 
-  const getNSquaresBottom = (pieceLocation, n) => {
+  const getSoutheastDiagonal = (pieceLocation, n) => {
     const locationLetter = pieceLocation[0].charCodeAt(0);
     const locationNumber = +pieceLocation[1];
 
@@ -65,7 +65,7 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
       undefined : String.fromCharCode(newLocationLetter) + newLocationNumber.toString();
   }
 
-  const getNSquaresRight = (pieceLocation, n) => {
+  const getNortheastDiagonal = (pieceLocation, n) => {
     const locationLetter = pieceLocation[0].charCodeAt(0);
     const locationNumber = +pieceLocation[1];
 
@@ -76,7 +76,7 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
       undefined : String.fromCharCode(newLocationLetter) + newLocationNumber.toString();
   }
 
-  const getNSquaresTop = (pieceLocation, n) => {
+  const getNorthwestDiagonal = (pieceLocation, n) => {
     const locationLetter = pieceLocation[0].charCodeAt(0);
     const locationNumber = +pieceLocation[1];
 
@@ -87,7 +87,7 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
       undefined : String.fromCharCode(newLocationLetter) + newLocationNumber.toString();
   }
 
-  const getNSquaresLeft = (pieceLocation, n) => {
+  const getSouthwestDiagonal = (pieceLocation, n) => {
     const locationLetter = pieceLocation[0].charCodeAt(0);
     const locationNumber = +pieceLocation[1];
 
