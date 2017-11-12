@@ -21,7 +21,6 @@ export const BoardPresentation = (() => {
     GetRemovedPieceUseCase.execute()
       .subscribe(
         location => {
-          console.log('test', location);
           removeCssClass('board-piece--white', location);
           removeCssClass('board-piece--black', location);
           removeCssClass('cursor-pointer', location);
