@@ -11,8 +11,7 @@ export const ValidateMovementUseCase = (() => {
       return false;
     }
 
-    const correctDirection = PlayerDataSource.getPlayerTurn() === Player.one ? destination[1] > origin[1] : destination[1] < origin[1];
-    return (isDiagonalMovement(origin, destination) && correctDirection && !shouldDoJumpMovement()) ||
+    return (isDiagonalMovement(origin, destination) && getCorrectDirection(origin, destination) && !shouldDoJumpMovement()) ||
       isJumpMovement(origin, destination);
   }
 
@@ -29,6 +28,26 @@ export const ValidateMovementUseCase = (() => {
 
   const isDiagonalMovement = (origin, destination) => {
     return IsMovementDiagonalUseCase.execute(origin, destination);
+  }
+
+  const getCorrectDirection = (origin, destination) => {
+    const kings = PlayerDataSource.getPlayerTurn() === Player.one ?
+      PiecesDataSource.getDarkkings() : PiecesDataSource.getLightKings();
+    
+    if (isOriginFromKingPiece(kings, origin)) {
+      return true;
+    } else {
+      return PlayerDataSource.getPlayerTurn() === Player.one ? destination[1] > origin[1] : destination[1] < origin[1];
+    }
+  }
+
+  const isOriginFromKingPiece = (kings, origin) => {
+    const currentPiecesLocation = getPiecesLocation();
+    let response = false;
+    kings.forEach(king => {
+      response = currentPiecesLocation[king] === origin ? true : response;
+    })
+    return response;
   }
 
   const shouldDoJumpMovement = () => {

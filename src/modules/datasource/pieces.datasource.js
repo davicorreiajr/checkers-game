@@ -89,6 +89,10 @@ export const PiecesDataSource = (() => {
     }
   }
 
+  const getDarkkings = () => {
+    return darkKings;
+  }
+
   const getLightPiecesLocation = () => {
     return lightPiecesLocation;
   }
@@ -110,6 +114,10 @@ export const PiecesDataSource = (() => {
     } else if (+location[1] === BoardLimits.bottom && lightKings.indexOf(piece) === -1) {
       lightKings.push(piece);
     }
+  }
+
+  const getLightKings = () => {
+    return lightKings;
   }
 
   const getDarkPiecesPossibleLocation = () => {
@@ -139,6 +147,8 @@ export const PiecesDataSource = (() => {
     setLightPieceLocation,
     getDarkPiecesPossibleLocation,
     getLightPiecesPossibleLocation,
-    getPieceRemoved
+    getPieceRemoved,
+    getDarkkings,
+    getLightKings,
   };
 })()
