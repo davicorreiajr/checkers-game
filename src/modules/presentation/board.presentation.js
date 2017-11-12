@@ -1,7 +1,6 @@
 import { Player } from '../shared/constants';
 import { GetLightPiecesLocationUseCase } from '../domain/get-light-pieces-location.use-case';
 import { GetDarkPiecesLocationUseCase } from '../domain/get-dark-pieces-location.use-case';
-import { SquareBelongsToDarkPieces } from '../domain/square-belongs-to-dark-pieces.use-case';
 import { GetCurrentTurnUseCase } from '../domain/get-current-turn.use-case';
 import { NextTurnUseCase } from '../domain/next-turn.use-case';
 import { ValidateMovementUseCase } from '../domain/validate-movement.use-case';
