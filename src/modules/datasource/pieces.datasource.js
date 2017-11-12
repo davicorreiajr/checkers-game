@@ -3,65 +3,65 @@ import { ReplaySubject } from 'rxjs';
 export const PiecesDataSource = (() => {
   let pieceRemoved = new ReplaySubject();
 
-  // const darkPiecesLocation = {
-  //   0: 'A1',
-  //   1: 'C1',
-  //   2: 'E1',
-  //   3: 'G1',
-  //   4: 'B2',
-  //   5: 'D2',
-  //   6: 'F2',
-  //   7: 'H2',
-  //   8: 'A3',
-  //   9: 'C3',
-  //   10: 'E3',
-  //   11: 'G3',
-  // }
-
-  // const lightPiecesLocation = {
-  //   0: 'A8',
-  //   1: 'C8',
-  //   2: 'E8',
-  //   3: 'G8',
-  //   4: 'B7',
-  //   5: 'D7',
-  //   6: 'F7',
-  //   7: 'H7',
-  //   8: 'A6',
-  //   9: 'C6',
-  //   10: 'E6',
-  //   11: 'G6',
-  // }
-
   const darkPiecesLocation = {
-    0: null,
-    1: null,
-    2: null,
-    3: null,
-    4: null,
-    5: null,
-    6: null,
-    7: null,
-    8: null,
-    9: null,
-    10: null,
+    0: 'A1',
+    1: 'C1',
+    2: 'E1',
+    3: 'G1',
+    4: 'B2',
+    5: 'D2',
+    6: 'F2',
+    7: 'H2',
+    8: 'A3',
+    9: 'C3',
+    10: 'E3',
     11: 'G3',
   }
 
   const lightPiecesLocation = {
-    0: null,
-    1: null,
-    2: null,
-    3: null,
-    4: null,
-    5: null,
-    6: null,
-    7: null,
-    8: null,
-    9: null,
-    10: null,
+    0: 'A8',
+    1: 'C8',
+    2: 'E8',
+    3: 'G8',
+    4: 'B7',
+    5: 'D7',
+    6: 'F7',
+    7: 'H7',
+    8: 'A6',
+    9: 'C6',
+    10: 'E6',
     11: 'G6',
   }
+
+  // const darkPiecesLocation = {
+  //   0: null,
+  //   1: null,
+  //   2: null,
+  //   3: null,
+  //   4: null,
+  //   5: null,
+  //   6: null,
+  //   7: null,
+  //   8: null,
+  //   9: null,
+  //   10: null,
+  //   11: 'G3',
+  // }
+
+  // const lightPiecesLocation = {
+  //   0: null,
+  //   1: null,
+  //   2: null,
+  //   3: null,
+  //   4: null,
+  //   5: null,
+  //   6: null,
+  //   7: null,
+  //   8: null,
+  //   9: null,
+  //   10: null,
+  //   11: 'G6',
+  // }
 
   const getDarkPiecesLocation = () => {
     return darkPiecesLocation;
