@@ -2,7 +2,7 @@ import { Player } from '../shared/constants';
 import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
 
-export const IsMovementDiagonal = (() => {
+export const IsMovementDiagonalUseCase = (() => {
   const execute = (origin, destination) => {
     const originBoardLetter = origin[0].charCodeAt(0);
     const originBoardNumber = +origin[1];

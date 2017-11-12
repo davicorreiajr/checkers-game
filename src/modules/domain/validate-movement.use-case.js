@@ -1,8 +1,8 @@
 import { Player } from '../shared/constants';
 import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
-import { IsMovementDiagonal } from './is-movement-diagonal.use-case';
-import { IsJumpMovement } from './is-jump-movement.use-case';
+import { IsMovementDiagonalUseCase } from './is-movement-diagonal.use-case';
+import { IsJumpMovementUseCase } from './is-jump-movement.use-case';
 
 export const ValidateMovementUseCase = (() => {
   const execute = (origin, destination) => {
@@ -27,11 +27,11 @@ export const ValidateMovementUseCase = (() => {
   }
 
   const isDiagonalMovement = (origin, destination) => {
-    return IsMovementDiagonal.execute(origin, destination);
+    return IsMovementDiagonalUseCase.execute(origin, destination);
   }
 
   const isJumpMovement = (origin, destination) => {
-    return IsJumpMovement.execute(origin, destination);
+    return IsJumpMovementUseCase.execute(origin, destination);
   }
 
   const arrayContainsItem = (array, item) => {

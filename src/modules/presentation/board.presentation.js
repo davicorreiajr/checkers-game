@@ -4,6 +4,7 @@ import { GetDarkPiecesLocationUseCase } from '../domain/get-dark-pieces-location
 import { GetCurrentTurnUseCase } from '../domain/get-current-turn.use-case';
 import { NextTurnUseCase } from '../domain/next-turn.use-case';
 import { ValidateMovementUseCase } from '../domain/validate-movement.use-case';
+import { DoesSquareContainPieceUseCase } from  '../domain/does-square-contain-piece.use-case';
 
 export const BoardPresentation = (() => {
   let squareSelected;
@@ -27,14 +28,14 @@ export const BoardPresentation = (() => {
 
   const selectSquare = (squareLocation) => {
     if (!squareSelected) {
-      squareSelected = squareLocation;
+      squareSelected = DoesSquareContainPieceUseCase.execute(squareLocation) ? squareLocation : undefined
     } else {
       tryToMakeTheMove(squareLocation);
     }
   }
 
   const tryToMakeTheMove = (destinationSquare) => {
-    if (ValidateMovementUseCase.execute(squareSelected, destinationSquare)) { // change to verify if this movement is correct
+    if (ValidateMovementUseCase.execute(squareSelected, destinationSquare)) {
       const currentTurn = GetCurrentTurnUseCase.execute();
       const cssClass = currentTurn === Player.one ? 'board-piece--black' : 'board-piece--white';
       removeCssClass(cssClass, squareSelected);
