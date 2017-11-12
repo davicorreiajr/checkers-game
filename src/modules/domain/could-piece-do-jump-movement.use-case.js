@@ -1,12 +1,13 @@
 import { Player, BoardLimits } from '../shared/constants'
+import { CalculateSquare } from '../shared/calculate-square';
 import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
-import { DoesSquareContainPieceUseCase } from './does-square-contain-piece.use-case';
 
 export const CouldPieceDoJumpMovementUseCase = (() => {
   const execute = (origin) => {
     let couldPieceDoJumpMovement = false;
     const neighborSquares = getNeighborSquares(origin);
+    const jumpedSquares = getJumpedSquareMap(origin);
     const opponentPiecesLocation = PlayerDataSource.getPlayerTurn() === Player.one ?
       PiecesDataSource.getLightPiecesLocation() : PiecesDataSource.getDarkPiecesLocation();
 
@@ -14,7 +15,7 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
       if (
         neighborSquares[key] &&
         arrayContainsItem(Object.values(opponentPiecesLocation), neighborSquares[key]) &&
-        isSquareEmpty(jumpedSquareMap[key](origin))
+        isSquareEmpty(jumpedSquares[key])
       ) {
         couldPieceDoJumpMovement = true;
       }
@@ -24,50 +25,34 @@ export const CouldPieceDoJumpMovementUseCase = (() => {
 
   const getNeighborSquares = (square) => {
     return {
-      bottom: getNSquaresBottom(square, 1),
-      right: getNSquaresRight(square, 1),
-      top: getNSquaresTop(square, 1),
-      left: getNSquaresLeft(square, 1),
+      se: CalculateSquare.getNSoutheastDiagonal(square, 1),
+      ne: CalculateSquare.getNNortheastDiagonal(square, 1),
+      nw: CalculateSquare.getNNorthwestDiagonal(square, 1),
+      sw: CalculateSquare.getNSouthwestDiagonal(square, 1),
     };
   }
 
+  const getJumpedSquareMap = (square) => {
+    return {
+      se: CalculateSquare.getNSoutheastDiagonal(square, 2),
+      ne: CalculateSquare.getNNortheastDiagonal(square, 2),
+      nw: CalculateSquare.getNNorthwestDiagonal(square, 2),
+      sw: CalculateSquare.getNSouthwestDiagonal(square, 2),
+    }
+  }
+
   const isSquareEmpty = (location) => {
-    return location ? !DoesSquareContainPieceUseCase.execute(location) : false;
+    return location ? !arrayContainsItem(getAllPiecesLocation(), location) : false;
+  }
+
+  const getAllPiecesLocation = () => {
+    const lightPiecesLocation = PiecesDataSource.getLightPiecesLocation();
+    const darkPiecesLocation = PiecesDataSource.getDarkPiecesLocation();
+    return Object.values(lightPiecesLocation).concat(Object.values(darkPiecesLocation));
   }
 
   const arrayContainsItem = (array, item) => {
     return array.indexOf(item) != -1;
-  }
-
-  const jumpedSquareMap = {
-    bottom: (square) => getNSquaresBottom(square, 2),
-    right: (square) => getNSquaresRight(square, 2),
-    top: (square) => getNSquaresTop(square, 2),
-    left: (square) => getNSquaresLeft(square, 2),
-  }
-
-  const getNSquaresBottom = (square, n) => {
-    const newSquareNumber = +square[1] - n;
-    return newSquareNumber < BoardLimits.bottom ?
-      undefined : square[0] + newSquareNumber.toString();
-  }
-
-  const getNSquaresRight = (square, n) => {
-    const newSquareLetter = square[0].charCodeAt(0) + n;
-    return newSquareLetter > BoardLimits.right.charCodeAt(0) ?
-      undefined : String.fromCharCode(newSquareLetter) + square[1];
-  }
-
-  const getNSquaresTop = (square, n) => {
-    const newSquareNumber = +square[1] + n;
-    return newSquareNumber > BoardLimits.top ?
-      undefined : square[0] + newSquareNumber.toString();
-  }
-
-  const getNSquaresLeft = (square, n) => {
-    const newSquareLetter = square[0].charCodeAt(0) - n;
-    return newSquareLetter < BoardLimits.left.charCodeAt(0) ?
-      undefined : String.fromCharCode(newSquareLetter) + square[1];
   }
  
   return { execute };

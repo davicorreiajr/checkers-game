@@ -1,29 +1,41 @@
-import { Player } from '../shared/constants';
+import { Player, BoardLimits } from '../shared/constants';
 import { PiecesDataSource } from '../datasource/pieces.datasource';
 import { PlayerDataSource } from '../datasource/player.datasource';
 
 export const GetJumpedSquareUseCase = (() => {
   const execute = (origin, destination) => {
+    if (isDestinationOutOfBoard(destinationBoardLetter, destinationBoardNumber)) {
+      return undefined;
+    }
+
+    if (!isJumpMovement(origin, destination)) {
+      return undefined;
+    }
     const originBoardLetter = origin[0].charCodeAt(0);
     const originBoardNumber = +origin[1];
     const destinationBoardLetter = destination[0].charCodeAt(0);
     const destinationBoardNumber = +destination[1];
 
-    if (originBoardLetter === destinationBoardLetter) {
-      if (Math.abs(originBoardNumber - destinationBoardNumber) !== 2) {
-        return -1;
-      }
-      const locationJumped = String.fromCharCode(originBoardLetter) + ((originBoardNumber+destinationBoardNumber)/2).toString();
-      return Object.values(getOpponentPieces(PlayerDataSource.getPlayerTurn())).indexOf(locationJumped);
-    } else if (originBoardNumber === destinationBoardNumber) {
-      if (Math.abs(originBoardLetter - destinationBoardLetter) !== 2) {
-        return -1;
-      }
-      const locationJumped = String.fromCharCode((originBoardLetter+destinationBoardLetter)/2) + originBoardNumber.toString();
-      return Object.values(getOpponentPieces(PlayerDataSource.getPlayerTurn())).indexOf(locationJumped);
-    }
+    const jumpedLetter = String.fromCharCode((destinationBoardLetter + originBoardLetter) / 2);
+    const jumpedNumber = ((destinationBoardNumber + originBoardNumber) / 2).toString()
 
-    return -1;;
+    const locationJumped = jumpedLetter + jumpedNumber;
+    return Object.values(getOpponentPieces(PlayerDataSource.getPlayerTurn())).indexOf(locationJumped) > -1 ?
+      locationJumped : undefined;
+  }
+
+  const isDestinationOutOfBoard = (destinationLetter, destinationNumber) => {
+    return destinationLetter <= BoardLimits.right.charCodeAt(0) && destinationLetter >= BoardLimits.left.charCodeAt(0)
+      && destinationNumber < BoardLimits.top && destinationNumber > BoardLimits.bottom;
+  }
+
+  const isJumpMovement = (origin, destination) => {
+    const originLetter = origin[0].charCodeAt(0);
+    const originNumber = +origin[1];
+    const destinationLetter = destination[0].charCodeAt(0);
+    const destinationNumber = +destination[1];
+
+    return Math.abs(destinationLetter - originLetter) === 2 && Math.abs(destinationNumber - originNumber) === 2;
   }
 
   const getOpponentPieces = (turn) => {

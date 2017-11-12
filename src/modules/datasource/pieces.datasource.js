@@ -7,18 +7,18 @@ export const PiecesDataSource = (() => {
   let lightKings = [];
 
   const darkPiecesLocation = {
-    0: 'A1',
-    1: 'C1',
-    2: 'E1',
-    3: 'G1',
-    4: 'B2',
-    5: 'D2',
-    6: 'F2',
-    7: 'H2',
-    8: 'A3',
-    9: 'C3',
-    10: 'E3',
-    11: 'G3',
+    0: 'B1',
+    1: 'D1',
+    2: 'F1',
+    3: 'H1',
+    4: 'A2',
+    5: 'C2',
+    6: 'E2',
+    7: 'G2',
+    8: 'B3',
+    9: 'D3',
+    10: 'F3',
+    11: 'H3',
   }
 
   const lightPiecesLocation = {
@@ -120,19 +120,11 @@ export const PiecesDataSource = (() => {
     return lightKings;
   }
 
-  const getDarkPiecesPossibleLocation = () => {
+  const getPossibleLocations = () => {
     return [
-      'A1', 'C1', 'E1', 'G1', 'B2', 'D2', 'F2', 'H2', 'A3', 'C3', 'E3', 'G3',
-      'B4', 'D4', 'F4', 'H4', 'A5', 'C5', 'E5', 'G5', 'B6', 'D6', 'F6', 'H6',
-      'A7', 'C7', 'E7', 'G7', 'B8', 'D8', 'F8', 'H8'
-    ];
-  }
-
-  const getLightPiecesPossibleLocation = () => {
-    return [
-      'A8', 'C8', 'E8', 'G8', 'B7', 'D7', 'F7', 'H7', 'A6', 'C6', 'E6', 'G6',
-      'B5', 'D5', 'F5', 'H5', 'A4', 'C4', 'E4', 'G4', 'B3', 'D3', 'F3', 'H3',
-      'A2', 'C2', 'E2', 'G2', 'B1', 'D1', 'F1', 'H1'
+      'B1', 'D1', 'F1', 'H1', 'A2', 'C2', 'E2', 'G2', 'B3', 'D3', 'F3', 'H3',
+      'A4', 'C4', 'E4', 'G4', 'B5', 'D5', 'F5', 'H5', 'A6', 'C6', 'E6', 'G6',
+      'B7', 'D7', 'F7', 'H7', 'A8', 'C8', 'E8', 'G8'
     ];
   }
 
@@ -145,8 +137,7 @@ export const PiecesDataSource = (() => {
     setDarkPieceLocation,
     getLightPiecesLocation,
     setLightPieceLocation,
-    getDarkPiecesPossibleLocation,
-    getLightPiecesPossibleLocation,
+    getPossibleLocations,
     getPieceRemoved,
     getDarkkings,
     getLightKings,
