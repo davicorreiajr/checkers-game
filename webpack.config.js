@@ -7,10 +7,15 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   module: {
-    rules: [{
-      test: /\.js$/, // files ending with .js
-      exclude: /node_modules/, // exclude the node_modules directory
-      loader: "babel-loader" // use this (babel-core) loader
-    }]
-  }
+    rules: [
+      {
+        test: /\.js$/i,
+        exclude: [/node_modules/],
+        use: [{
+          loader: 'babel-loader',
+          options: { presets: ['env'] },
+        }],
+      },
+    ],
+  },
 };
