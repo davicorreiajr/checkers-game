@@ -48,22 +48,22 @@ export const PiecesDataSource = (() => {
   //   8: null,
   //   9: null,
   //   10: null,
-  //   11: 'A7',
+  //   11: 'C5',
   // }
 
   // const lightPiecesLocation = {
-  //   0: null,
-  //   1: null,
-  //   2: null,
-  //   3: null,
-  //   4: null,
-  //   5: null,
-  //   6: null,
-  //   7: null,
+  //   0: 'A2',
+  //   1: 'B1',
+  //   2: 'C2',
+  //   3: 'D1',
+  //   4: 'E2',
+  //   5: 'F1',
+  //   6: 'F3',
+  //   7: 'H1',
   //   8: null,
   //   9: null,
   //   10: null,
-  //   11: 'A2',
+  //   11: null,
   // }
 
   const getDarkPiecesLocation = () => {
@@ -131,7 +131,7 @@ export const PiecesDataSource = (() => {
   const getLightPiecesPossibleLocation = () => {
     return [
       'A8', 'C8', 'E8', 'G8', 'B7', 'D7', 'F7', 'H7', 'A6', 'C6', 'E6', 'G6',
-      'B5', 'D5', 'F5', 'H5', 'A4', 'C4', 'E4', 'G4', 'B3', 'D3', 'F3', 'H4',
+      'B5', 'D5', 'F5', 'H5', 'A4', 'C4', 'E4', 'G4', 'B3', 'D3', 'F3', 'H3',
       'A2', 'C2', 'E2', 'G2', 'B1', 'D1', 'F1', 'H1'
     ];
   }

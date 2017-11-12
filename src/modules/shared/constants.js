@@ -14,5 +14,4 @@ export const PlayerVictorious = {
   one: 'darkPieces',
   two: 'lightPieces',
   none: 'none',
-  draw: 'draw',
 }

@@ -33,12 +33,9 @@ export const ValidateMovementUseCase = (() => {
   const getCorrectDirection = (origin, destination) => {
     const kings = PlayerDataSource.getPlayerTurn() === Player.one ?
       PiecesDataSource.getDarkkings() : PiecesDataSource.getLightKings();
-    
-    if (isOriginFromKingPiece(kings, origin)) {
-      return true;
-    } else {
-      return PlayerDataSource.getPlayerTurn() === Player.one ? destination[1] > origin[1] : destination[1] < origin[1];
-    }
+
+    return isOriginFromKingPiece(kings, origin) ? true :
+      PlayerDataSource.getPlayerTurn() === Player.one ? destination[1] > origin[1] : destination[1] < origin[1];
   }
 
   const isOriginFromKingPiece = (kings, origin) => {
@@ -59,7 +56,6 @@ export const ValidateMovementUseCase = (() => {
       .forEach(location => {
         response = couldDoJumpMovement(location) ? true : response;
       })
-
     return response;
   }
 

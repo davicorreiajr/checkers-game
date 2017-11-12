@@ -1,15 +1,32 @@
 import { BehaviorSubject } from 'rxjs';
-import { PlayerVictorious } from '../shared/constants';
+import { PlayerVictorious, Player } from '../shared/constants';
 import { PiecesDataSource } from '../datasource/pieces.datasource';
+import { PlayerDataSource } from '../datasource/player.datasource';
 import { GameDataSource } from '../datasource/game.datasource';
+import { VerifyPossibleMovementsUseCase } from './verify-possible-movements.use-case';
 
 export const DecideIfGameFinishedUseCase = (() => {
   const execute = () => {
+    VerifyPossibleMovementsUseCase.execute()
+      .subscribe(
+        isPossibleToMove => checkForMovementPossibilty(isPossibleToMove),
+        error => console.log(error) // for debug purposes
+      );
+
     PiecesDataSource.getPieceRemoved()
       .subscribe(
         location => verifyIfGameFinished(location),
         error => console.log(error) // for debug purposes
       );
+  }
+
+  const checkForMovementPossibilty = (isPossibleToMove) => {
+    const turn = PlayerDataSource.getPlayerTurn()
+    if (turn === Player.one && !isPossibleToMove) {
+      GameDataSource.setWhoWon(PlayerVictorious.two)
+    } else if (turn === Player.two && !isPossibleToMove) {
+      GameDataSource.setWhoWon(PlayerVictorious.one)
+    }
   }
 
   const verifyIfGameFinished = (location) => {
