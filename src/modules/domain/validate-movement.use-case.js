@@ -21,11 +21,11 @@ export const ValidateMovementUseCase = (() => {
   }
 
   const isPieceGoingToEmptySquare = (destination) => {
-    const currentPiecesLocation = x();
+    const currentPiecesLocation = getAllPiecesLocation();
     return !arrayContainsItem(Object.values(currentPiecesLocation), destination);
   }
 
-  const x = () => {
+  const getAllPiecesLocation = () => {
     const lightPiecesLocation = PiecesDataSource.getLightPiecesLocation();
     const darkPiecesLocation = PiecesDataSource.getDarkPiecesLocation();
     return Object.values(lightPiecesLocation).concat(Object.values(darkPiecesLocation));
