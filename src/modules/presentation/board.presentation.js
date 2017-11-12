@@ -69,7 +69,7 @@ export const BoardPresentation = (() => {
 
   const selectSquare = (squareLocation) => {
     if (!squareSelected) {
-      squareSelected = DoesSquareContainPieceUseCase.execute(squareLocation) ? squareLocation : undefined
+      squareSelected = DoesSquareContainPieceUseCase.execute(squareLocation) ? squareLocation : undefined;
     } else {
       tryToMakeTheMove(squareLocation);
     }

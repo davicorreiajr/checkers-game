@@ -6,8 +6,10 @@ import { GetJumpedSquareUseCase } from './get-jumped-square.use-case';
 export const NextTurnUseCase = (() => {
   const execute = (origin, destination) => {
     updateOwnPiecesLocation(origin, destination);
-    updateOpponentPiecesLocation(origin, destination);
-    changeTurn();
+
+    const jumpedSquare = GetJumpedSquareUseCase.execute(origin, destination);
+    updateOpponentPiecesLocation(jumpedSquare);
+    setTurn(jumpedSquare);
   }
 
   const updateOwnPiecesLocation = (origin, destination) => {
@@ -23,9 +25,8 @@ export const NextTurnUseCase = (() => {
     })
   }
 
-  const updateOpponentPiecesLocation = (origin, destination) => {
+  const updateOpponentPiecesLocation = (jumpedSquare) => {
     const piecesLocation = getOpponentPiecesLocation();
-    const jumpedSquare = GetJumpedSquareUseCase.execute(origin, destination);
     if (jumpedSquare > -1) {
       Object.keys(piecesLocation).forEach(key => {
         if (+key === jumpedSquare) {
@@ -47,10 +48,15 @@ export const NextTurnUseCase = (() => {
     return PlayerDataSource.getPlayerTurn() === Player.one ? PiecesDataSource.getLightPiecesLocation() : PiecesDataSource.getDarkPiecesLocation();
   }
 
-  const changeTurn = () => {
-    const nextTurn = PlayerDataSource.getPlayerTurn() === Player.one ?
-      Player.two : Player.one
+  const setTurn = (jumpedSquare) => {
+    const nextTurn = jumpedSquare > -1 ?
+      PlayerDataSource.getPlayerTurn() : changeTurn();
     PlayerDataSource.setPlayerTurn(nextTurn);
+  }
+
+  const changeTurn = () => {
+    return PlayerDataSource.getPlayerTurn() === Player.one ?
+      Player.two : Player.one
   }
 
   return { execute };

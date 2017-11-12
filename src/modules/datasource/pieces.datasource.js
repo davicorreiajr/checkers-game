@@ -1,7 +1,10 @@
 import { ReplaySubject } from 'rxjs';
+import { BoardLimits } from '../shared/constants';
 
 export const PiecesDataSource = (() => {
   let pieceRemoved = new ReplaySubject();
+  let darkKings = [];
+  let lightKings = [];
 
   const darkPiecesLocation = {
     0: 'A1',
@@ -45,7 +48,7 @@ export const PiecesDataSource = (() => {
   //   8: null,
   //   9: null,
   //   10: null,
-  //   11: 'G3',
+  //   11: 'A7',
   // }
 
   // const lightPiecesLocation = {
@@ -60,7 +63,7 @@ export const PiecesDataSource = (() => {
   //   8: null,
   //   9: null,
   //   10: null,
-  //   11: 'G6',
+  //   11: 'A2',
   // }
 
   const getDarkPiecesLocation = () => {
@@ -72,6 +75,22 @@ export const PiecesDataSource = (() => {
       pieceRemoved.next(darkPiecesLocation[piece]);
     }
     darkPiecesLocation[piece] = location;
+    updateDarkKings(piece, location);
+  }
+
+  const updateDarkKings = (piece, location) => {
+    if (!location) {
+      const index = darkKings.indexOf(piece);
+      if (index !== -1) {
+        darkKings.splice(index, 1);
+      }
+    } else if (+location[1] === BoardLimits.top && darkKings.indexOf(piece) === -1) {
+      darkKings.push(piece);
+    }
+  }
+
+  const getDarkkings = () => {
+    return darkKings;
   }
 
   const getLightPiecesLocation = () => {
@@ -83,6 +102,22 @@ export const PiecesDataSource = (() => {
       pieceRemoved.next(lightPiecesLocation[piece]);
     }
     lightPiecesLocation[piece] = location;
+    updateLightKings(piece, location);
+  }
+
+  const updateLightKings = (piece, location) => {
+    if (!location) {
+      const index = lightKings.indexOf(piece);
+      if (index !== -1) {
+        lightKings.splice(index, 1);
+      }
+    } else if (+location[1] === BoardLimits.bottom && lightKings.indexOf(piece) === -1) {
+      lightKings.push(piece);
+    }
+  }
+
+  const getLightKings = () => {
+    return lightKings;
   }
 
   const getDarkPiecesPossibleLocation = () => {
@@ -112,6 +147,8 @@ export const PiecesDataSource = (() => {
     setLightPieceLocation,
     getDarkPiecesPossibleLocation,
     getLightPiecesPossibleLocation,
-    getPieceRemoved
+    getPieceRemoved,
+    getDarkkings,
+    getLightKings,
   };
 })()
