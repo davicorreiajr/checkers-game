@@ -4,7 +4,7 @@ The rules for this game was based on this [page](https://simple.wikipedia.org/wi
 
 ---
 
-# Running the app locally
+## Running the app locally
 
 - Ensure you are using the Node version specified in `.nvmrc` and `package.json`:
 ```bash
