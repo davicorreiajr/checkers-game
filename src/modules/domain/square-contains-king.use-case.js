@@ -14,13 +14,15 @@ export const SquareContainsKing = (() => {
 
     Object.keys(darkPiecesLocation).forEach(piece => {
       if (darkPiecesLocation[piece]) {
-        response = darkKings.indexOf(piece) > -1 ? true : response;
+        response = darkKings.indexOf(piece) > -1 && darkPiecesLocation[piece] === square ?
+          true : response;
       }
     })
 
     Object.keys(lightPiecesLocation).forEach(piece => {
       if (lightPiecesLocation[piece]) {
-        response = lightKings.indexOf(piece) > -1 ? true : response;
+        response = lightKings.indexOf(piece) > -1 && lightPiecesLocation[piece] === square ?
+          true : response;
       }
     })
 
