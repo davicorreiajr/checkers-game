@@ -1,6 +1,6 @@
 {
   "name": "checkers-game",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "davicorreiajr",
   "engines": {
     "node": "6.10.3",
