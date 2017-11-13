@@ -116,7 +116,9 @@ export const BoardPresentation = (() => {
       setPiecesLocation();
       document.getElementById('messageFail').innerHTML = null;
     } else {
-      document.getElementById('messageFail').innerHTML = 'You can not make this movement!';
+      let message = document.getElementById('messageFail');
+      message.innerHTML = 'You can not make this movement!';
+      message.scrollTop = 0;
     }
     
     removeCssClass('board-piece--white-selected', squareSelected);
