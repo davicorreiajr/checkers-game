@@ -8,13 +8,33 @@ import { DoesSquareContainPieceUseCase } from  '../domain/does-square-contain-pi
 import { GetRemovedPieceUseCase } from '../domain/get-removed-piece.use-case';
 import { DecideIfGameFinishedUseCase } from '../domain/decide-if-game-finished.use-case';
 import { GetWhoWonUseCase } from '../domain/get-who-won.use-case';
+import { ResetGameUseCase } from '../domain/reset-game.use-case';
 
 export const BoardPresentation = (() => {
   let squareSelected;
+  const middleSquares = ['A4', 'B5', 'C4', 'D5', 'E4', 'F5', 'G4', 'H5'];
 
   const onInit = () => {
     subscribeToRemovedPieces();
     subscribeToGameDecision();
+  }
+
+  const onStart = () => {
+    let button = document.getElementById('startButton');
+    button.onclick = () => onReset();
+    button.firstChild.data = 'Reset game';
+    setPiecesLocation();
+  }
+
+  const onReset = () => {
+    ResetGameUseCase.execute();
+    middleSquares.forEach(square => {
+      removeCssClass('board-piece--white', square);
+      removeCssClass('board-piece--black', square);
+      removeCssClass('cursor-pointer', square);
+    })
+    updateTurnBoard();
+    setPiecesLocation();
   }
 
   const subscribeToRemovedPieces = () => {
@@ -115,6 +135,8 @@ export const BoardPresentation = (() => {
 
   return {
     onInit,
+    onStart,
+    onReset,
     setPiecesLocation,
     selectSquare
   };
