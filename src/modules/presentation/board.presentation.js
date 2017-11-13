@@ -9,6 +9,7 @@ import { GetRemovedPieceUseCase } from '../domain/get-removed-piece.use-case';
 import { DecideIfGameFinishedUseCase } from '../domain/decide-if-game-finished.use-case';
 import { GetWhoWonUseCase } from '../domain/get-who-won.use-case';
 import { ResetGameUseCase } from '../domain/reset-game.use-case';
+import { SquareContainsKing } from '../domain/square-contains-king.use-case';
 
 export const BoardPresentation = (() => {
   let squareSelected;
@@ -107,6 +108,7 @@ export const BoardPresentation = (() => {
       removeCssClass('cursor-pointer', squareSelected);
       addCssClass(cssClass, destinationSquare);
       addCssClass('cursor-pointer', destinationSquare);
+      setStyleIfPieceIsKing(destinationSquare);
       NextTurnUseCase.execute(squareSelected, destinationSquare);
       updateTurnBoard();
       setPiecesLocation();
@@ -128,6 +130,13 @@ export const BoardPresentation = (() => {
         removeCssClass('scoreboard-player--selected', value);
       }
     })
+  }
+
+  const setStyleIfPieceIsKing = (destinationSquare) => {
+    console.log('squareSelected', squareSelected);
+    if (SquareContainsKing.execute(squareSelected)) {
+      console.log('inside if');
+    }
   }
 
   const addCssClass = (cssClass, elementId) => {

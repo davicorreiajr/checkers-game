@@ -7,8 +7,37 @@ export const PiecesDataSource = (() => {
   let darkKings = [];
   let lightKings = [];
 
-  let darkPiecesLocation = _.cloneDeep(DarkPiecesInitialLocation);
-  let lightPiecesLocation = _.cloneDeep(LightPiecesInitialLocation);
+  // let darkPiecesLocation = _.cloneDeep(DarkPiecesInitialLocation);
+  // let lightPiecesLocation = _.cloneDeep(LightPiecesInitialLocation);
+
+  let darkPiecesLocation = {
+    0: null,
+    1: null,
+    2: null,
+    3: null,
+    4: null,
+    5: null,
+    6: null,
+    7: null,
+    8: null,
+    9: null,
+    10: null,
+    11: 'B7',
+  }
+  let lightPiecesLocation = {
+    0: null,
+    1: null,
+    2: null,
+    3: null,
+    4: null,
+    5: null,
+    6: null,
+    7: null,
+    8: null,
+    9: null,
+    10: null,
+    11: 'A2',
+  }
 
   const getDarkPiecesLocation = () => {
     return darkPiecesLocation;
