@@ -48,8 +48,7 @@ export const BoardPresentation = (() => {
           removeCssClass('board-piece--black--king', location);
           removeCssClass('board-piece--white--king', location);
           removeCssClass('cursor-pointer', location);
-        },
-        error => console.log(error), // for debug purposes
+        }
       );
   }
 
@@ -57,8 +56,7 @@ export const BoardPresentation = (() => {
     DecideIfGameFinishedUseCase.execute();
     GetWhoWonUseCase.execute()
       .subscribe(
-        decision => decideIfShowFinalGameMessage(decision),
-        error => console.log(error), // for debug purposes
+        decision => decideIfShowFinalGameMessage(decision)
       );
   }
 

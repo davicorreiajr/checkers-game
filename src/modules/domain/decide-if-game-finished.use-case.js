@@ -9,14 +9,12 @@ export const DecideIfGameFinishedUseCase = (() => {
   const execute = () => {
     VerifyPossibleMovementsUseCase.execute()
       .subscribe(
-        isPossibleToMove => checkForMovementPossibilty(isPossibleToMove),
-        error => console.log(error) // for debug purposes
+        isPossibleToMove => checkForMovementPossibilty(isPossibleToMove)
       );
 
     PiecesDataSource.getPieceRemoved()
       .subscribe(
-        location => verifyIfGameFinished(location),
-        error => console.log(error) // for debug purposes
+        location => verifyIfGameFinished(location)
       );
   }
 
