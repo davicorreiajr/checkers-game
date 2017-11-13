@@ -126,10 +126,6 @@ p {
   text-align: center;
 }
 
-.message-success {
-  color: #00C853;
-}
-
 .message-fail {
   color: #D50000;
 }

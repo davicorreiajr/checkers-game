@@ -109,9 +109,11 @@ export const BoardPresentation = (() => {
       NextTurnUseCase.execute(squareSelected, destinationSquare);
       updateTurnBoard();
       setPiecesLocation();
+      document.getElementById('messageFail').innerHTML = null;
     } else {
-      console.log('wrong movement'); // change to show a msg
+      document.getElementById('messageFail').innerHTML = 'You can not make this movement!';
     }
+    
     removeCssClass('board-piece--white-selected', squareSelected);
     removeCssClass('board-piece--black-selected', squareSelected);
     squareSelected = undefined;
