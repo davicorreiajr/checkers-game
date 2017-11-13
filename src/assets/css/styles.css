@@ -108,18 +108,22 @@ p {
   background-color: black;
 }
 
+.board-piece--black-selected {
+  background-color: #212121;
+}
+
 .board-piece--white {
   background-color: white;
+}
+
+.board-piece--white-selected {
+  background-color: #BDBDBD;
 }
 
 .message-container {
   margin: 16px;
   max-width: 480px;
   text-align: center;
-}
-
-.message-success {
-  color: #00C853;
 }
 
 .message-fail {
@@ -132,14 +136,10 @@ p {
 }
 
 .footer {
+  margin: 16px;
   padding: 8px;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: #9E9E9E;
-  color: #E0E0E0;
-  font-size: 12px;
+  max-width: 480px;
   text-align: center;
+  font-size: 12px;
 }
 

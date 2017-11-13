@@ -10,7 +10,7 @@
   </head>
   <body>
     <h1>Checkers Game</h1>
-    <button id="startButton" class="button" onclick="BoardPresentation.setPiecesLocation()">Start game</button>
+    <button id="startButton" class="button" onclick="BoardPresentation.onStart()">Start game</button>
     <div>
       <div class="container scoreboard">
         <div class="row">
@@ -252,7 +252,7 @@
       <div class="container message-container">
         <div class="row">
           <div class="col">
-            <p class="message-success">Here goes the messages</p>
+            <p id="messageFail" class="message-fail"></p>
           </div>
         </div>
       </div>

@@ -1,70 +1,14 @@
 import { ReplaySubject } from 'rxjs';
-import { BoardLimits } from '../shared/constants';
+import _ from 'lodash'
+import { BoardLimits, DarkPiecesInitialLocation, LightPiecesInitialLocation } from '../shared/constants';
 
 export const PiecesDataSource = (() => {
   let pieceRemoved = new ReplaySubject();
   let darkKings = [];
   let lightKings = [];
 
-  const darkPiecesLocation = {
-    0: 'B1',
-    1: 'D1',
-    2: 'F1',
-    3: 'H1',
-    4: 'A2',
-    5: 'C2',
-    6: 'E2',
-    7: 'G2',
-    8: 'B3',
-    9: 'D3',
-    10: 'F3',
-    11: 'H3',
-  }
-
-  const lightPiecesLocation = {
-    0: 'A8',
-    1: 'C8',
-    2: 'E8',
-    3: 'G8',
-    4: 'B7',
-    5: 'D7',
-    6: 'F7',
-    7: 'H7',
-    8: 'A6',
-    9: 'C6',
-    10: 'E6',
-    11: 'G6',
-  }
-
-  // const darkPiecesLocation = {
-  //   0: null,
-  //   1: null,
-  //   2: null,
-  //   3: null,
-  //   4: null,
-  //   5: null,
-  //   6: null,
-  //   7: null,
-  //   8: null,
-  //   9: null,
-  //   10: null,
-  //   11: 'C5',
-  // }
-
-  // const lightPiecesLocation = {
-  //   0: 'A2',
-  //   1: 'B1',
-  //   2: 'C2',
-  //   3: 'D1',
-  //   4: 'E2',
-  //   5: 'F1',
-  //   6: 'F3',
-  //   7: 'H1',
-  //   8: null,
-  //   9: null,
-  //   10: null,
-  //   11: null,
-  // }
+  let darkPiecesLocation = _.cloneDeep(DarkPiecesInitialLocation);
+  let lightPiecesLocation = _.cloneDeep(LightPiecesInitialLocation);
 
   const getDarkPiecesLocation = () => {
     return darkPiecesLocation;
@@ -132,6 +76,11 @@ export const PiecesDataSource = (() => {
     return pieceRemoved;
   }
 
+  const resetAllPiecesToInitialLocation = () => {
+    darkPiecesLocation = _.cloneDeep(DarkPiecesInitialLocation);
+    lightPiecesLocation = _.cloneDeep(LightPiecesInitialLocation);
+  }
+
   return {
     getDarkPiecesLocation,
     setDarkPieceLocation,
@@ -141,5 +90,6 @@ export const PiecesDataSource = (() => {
     getPieceRemoved,
     getDarkkings,
     getLightKings,
+    resetAllPiecesToInitialLocation,
   };
 })()
