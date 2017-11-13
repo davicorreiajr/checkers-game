@@ -1,0 +1,24 @@
+{
+  "name": "checkers-game",
+  "version": "1.0.0",
+  "author": "davicorreiajr",
+  "engines": {
+    "node": "6.10.3",
+    "npm": "5.5.1",
+    "yarn": "0.27.5"
+  },
+  "dependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-preset-env": "1.6.1",
+    "lodash": "4.17.4",
+    "rxjs": "5.5.2",
+    "webpack": "3.8.1"
+  },
+  "scripts": {
+    "build": "webpack",
+    "postinstall": "npm run webpack",
+    "start": "npm run webpack && node server.js",
+    "webpack": "webpack --config webpack.config.js"
+  }
+}

@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Checkers game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="src/assets/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="src/assets/css/styles.css" >
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" >
+    <script type="text/javascript" src="dist/bundle.js"></script>
+  </head>
+  <body>
+    <h1>Checkers Game</h1>
+    <button id="startButton" class="button" onclick="BoardPresentation.onStart()">Start game</button>
+    <div>
+      <div class="container scoreboard">
+        <div class="row">
+          <div class="col">
+            <h4>Player turn</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div id="darkPieces" class="col scoreboard-player scoreboard-player--selected">
+            <p>Dark pieces</p>
+          </div>
+          <div id="lightPieces" class="col scoreboard-player">
+            <p>Light pieces</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="finalDecision">
+      </div>
+
+      <div class="container board">
+        <div class="row board-row">
+          <div class="col board-square board-square--dark">
+            <div id="A8" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="B8" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="C8" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="D8" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="E8" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="F8" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="G8" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="H8" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--light">
+            <div id="A7" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="B7" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="C7" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="D7" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="E7" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="F7" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="G7" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="H7" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--dark">
+            <div id="A6" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="B6" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="C6" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="D6" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="E6" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="F6" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="G6" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="H6" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--light">
+            <div id="A5" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="B5" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="C5" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="D5" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="E5" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="F5" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="G5" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="H5" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--dark">
+            <div id="A4" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="B4" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="C4" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="D4" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="E4" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="F4" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="G4" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="H4" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--light">
+            <div id="A3" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="B3" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="C3" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="D3" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="E3" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="F3" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="G3" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="H3" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--dark">
+            <div id="A2" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="B2" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="C2" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="D2" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="E2" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="F2" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="G2" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="H2" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+        </div>
+
+        <div class="row board-row">
+          <div class="col board-square board-square--light">
+            <div id="A1" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="B1" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="C1" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="D1" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="E1" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="F1" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--light">
+            <div id="G1" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+          <div class="col board-square board-square--dark">
+            <div id="H1" onclick="BoardPresentation.selectSquare(this.id)" class="board-piece"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container message-container">
+        <div class="row">
+          <div class="col">
+            <p id="messageFail" class="message-fail"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>This is a very simple implementation of Checkers Game, by Davi Cesar Correia Jr.</p>
+        <p>You can see the source code on my <a target="_blank" href="https://github.com/davicorreiajr/checkers-game">repository</a>.</p>
+      </div>
+    </div>
+  </body>
+</html>
