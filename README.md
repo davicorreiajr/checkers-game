@@ -6,6 +6,12 @@ The rules for this game was based on this [page](https://simple.wikipedia.org/wi
 
 ## Running the app locally
 
+- First, clone this repo:
+```bash
+$ git clone https://github.com/davicorreiajr/checkers-game.git
+$ cd checkers-game
+```
+
 - Ensure you are using the Node version specified in `.nvmrc` and `package.json`:
 ```bash
 $ nvm install
@@ -14,16 +20,10 @@ $ nvm use
 
 - For this project, I used Yarn:
 ```bash
-npm install -g yarn@`node -pe "require('./package.json').engines.yarn"`
+$ npm install -g yarn@`node -pe "require('./package.json').engines.yarn"`
 ```
 
-- Then, clone this repo:
-```bash
-$ git clone https://github.com/davicorreiajr/checkers-game.git
-$ cd checkers-game
-```
-
-- Install the dependencies:
+- Then, install the dependencies:
 ```bash
 $ yarn
 ```
