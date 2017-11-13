@@ -88,6 +88,11 @@ export const BoardPresentation = (() => {
   const selectSquare = (squareLocation) => {
     if (!squareSelected) {
       squareSelected = DoesSquareContainPieceUseCase.execute(squareLocation) ? squareLocation : undefined;
+      if (squareSelected) {
+        const cssClass = GetCurrentTurnUseCase.execute() === Player.one ?
+          'board-piece--black-selected' : 'board-piece--white-selected';
+        addCssClass(cssClass, squareSelected);
+      }
     } else {
       tryToMakeTheMove(squareLocation);
     }
@@ -104,11 +109,12 @@ export const BoardPresentation = (() => {
       NextTurnUseCase.execute(squareSelected, destinationSquare);
       updateTurnBoard();
       setPiecesLocation();
-      squareSelected = undefined;
     } else {
-      squareSelected = undefined;
       console.log('wrong movement'); // change to show a msg
     }
+    removeCssClass('board-piece--white-selected', squareSelected);
+    removeCssClass('board-piece--black-selected', squareSelected);
+    squareSelected = undefined;
   }
 
   const updateTurnBoard = () => {

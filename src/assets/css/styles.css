@@ -108,8 +108,16 @@ p {
   background-color: black;
 }
 
+.board-piece--black-selected {
+  background-color: #212121;
+}
+
 .board-piece--white {
   background-color: white;
+}
+
+.board-piece--white-selected {
+  background-color: #BDBDBD;
 }
 
 .message-container {
