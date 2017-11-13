@@ -12,8 +12,7 @@ export const VerifyPossibleMovementsUseCase = (() => {
   const execute = () => {
     PlayerDataSource.getTurnEmitter()
       .subscribe(
-        turn => emitPossibleMovements(turn),
-        error => console.log(error) // for debug purposes
+        turn => emitPossibleMovements(turn)
       );
     return possibleMovements;
   }
