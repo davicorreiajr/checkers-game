@@ -33,6 +33,7 @@ export const BoardPresentation = (() => {
       removeCssClass('board-piece--black', square);
       removeCssClass('cursor-pointer', square);
     })
+    document.getElementById('finalDecision').innerHTML = null;
     updateTurnBoard();
     setPiecesLocation();
   }
