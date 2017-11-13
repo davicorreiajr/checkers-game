@@ -33,6 +33,8 @@ $ yarn
 $ yarn start
 ```
 
+--- 
 
+## Troubles & sugestions
 
-
+Please, if you find any problem or have some sugestion, don't hesitate to open an issue or even a pull request.
