@@ -5,18 +5,18 @@ body {
 
 h1 {
   margin: 16px;
-  color: #8B4513;
+  color: #6C3A19;
   font-weight: bold;
 }
 
 h2 {
-  color: #8B4513;
+  color: #6C3A19;
 }
 
 h4 {
   padding: 4px;
   text-align: center;
-  color: #8B4513;
+  color: #6C3A19;
 }
 
 p {
@@ -29,9 +29,9 @@ p {
 
 .button {
   margin-left: 16px;
-  border: 2px solid #8B4513;
+  border: 2px solid #6C3A19;
   border-radius: 8px;
-  background-color: #8B4513;
+  background-color: #6C3A19;
   color: white;
   min-width: 150px;
   min-height: 40px;
@@ -56,7 +56,7 @@ p {
 .scoreboard {
   margin: 16px;
   max-width: 480px;
-  border: 1px solid #8B4513;
+  border: 2px solid #6C3A19;
   border-radius: 8px;
 }
 
@@ -66,8 +66,8 @@ p {
 }
 
 .scoreboard-player--selected {
-  background-color: #ffdbc1;
-  border: 1px dashed #8B4513;
+  background-color: #DCB455;
+  border: 2px dashed #6C3A19;
   border-radius: 8px
 }
 
@@ -87,11 +87,11 @@ p {
 }
 
 .board-square--dark {
-  background-color: #8B4513;
+  background-color: #6C3A19;
 }
 
 .board-square--light {
-  background-color: #ffdbc1;
+  background-color: #DCB455;
 }
 
 .board-piece {
