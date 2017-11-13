@@ -10,7 +10,7 @@ const server = http.createServer((request, response) => {
     sendFileContent(response, "index.html", "text/html;charset=UTF-8"); 
   } else if(/^\/[a-zA-Z0-9\/]*.js$/.test(request.url.toString())){
 		sendFileContent(response, request.url.toString().substring(1), "text/javascript");
-	} else if(/^\/[a-zA-Z0-9\/]*.css$/.test(request.url.toString())){
+	} else if(/^\/[a-zA-Z0-9\/\.]*.css$/.test(request.url.toString())){
 		sendFileContent(response, request.url.toString().substring(1), "text/css");
 	} else if (request.url === '/favicon.ico') {
     sendFileContent(response, "src/assets/img/favicon.ico", "image/png")
