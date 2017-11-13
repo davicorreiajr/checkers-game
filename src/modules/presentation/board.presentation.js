@@ -9,6 +9,7 @@ import { GetRemovedPieceUseCase } from '../domain/get-removed-piece.use-case';
 import { DecideIfGameFinishedUseCase } from '../domain/decide-if-game-finished.use-case';
 import { GetWhoWonUseCase } from '../domain/get-who-won.use-case';
 import { ResetGameUseCase } from '../domain/reset-game.use-case';
+import { SquareContainsKing } from '../domain/square-contains-king.use-case';
 
 export const BoardPresentation = (() => {
   let squareSelected;
@@ -33,6 +34,7 @@ export const BoardPresentation = (() => {
       removeCssClass('board-piece--black', square);
       removeCssClass('cursor-pointer', square);
     })
+    document.getElementById('finalDecision').innerHTML = null;
     updateTurnBoard();
     setPiecesLocation();
   }
@@ -43,6 +45,8 @@ export const BoardPresentation = (() => {
         location => {
           removeCssClass('board-piece--white', location);
           removeCssClass('board-piece--black', location);
+          removeCssClass('board-piece--black--king', location);
+          removeCssClass('board-piece--white--king', location);
           removeCssClass('cursor-pointer', location);
         },
         error => console.log(error), // for debug purposes
@@ -100,13 +104,14 @@ export const BoardPresentation = (() => {
 
   const tryToMakeTheMove = (destinationSquare) => {
     if (ValidateMovementUseCase.execute(squareSelected, destinationSquare)) {
-      const currentTurn = GetCurrentTurnUseCase.execute();
-      const cssClass = currentTurn === Player.one ? 'board-piece--black' : 'board-piece--white';
+      const cssClass = GetCurrentTurnUseCase.execute() === Player.one ?
+        'board-piece--black' : 'board-piece--white';
       removeCssClass(cssClass, squareSelected);
       removeCssClass('cursor-pointer', squareSelected);
       addCssClass(cssClass, destinationSquare);
       addCssClass('cursor-pointer', destinationSquare);
       NextTurnUseCase.execute(squareSelected, destinationSquare);
+      setStyleIfPieceIsKing(destinationSquare);
       updateTurnBoard();
       setPiecesLocation();
       document.getElementById('messageFail').innerHTML = null;
@@ -127,6 +132,15 @@ export const BoardPresentation = (() => {
         removeCssClass('scoreboard-player--selected', value);
       }
     })
+  }
+
+  const setStyleIfPieceIsKing = (destinationSquare) => {
+    if (SquareContainsKing.execute(destinationSquare)) {
+      const cssClass = GetCurrentTurnUseCase.execute() === Player.one ?
+        'board-piece--white--king' : 'board-piece--black--king';
+      removeCssClass(cssClass, squareSelected);
+      addCssClass(cssClass, destinationSquare);
+    }
   }
 
   const addCssClass = (cssClass, elementId) => {
