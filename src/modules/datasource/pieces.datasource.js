@@ -21,7 +21,7 @@ export const PiecesDataSource = (() => {
     7: null,
     8: null,
     9: null,
-    10: null,
+    10: 'A6',
     11: 'B7',
   }
   let lightPiecesLocation = {
@@ -35,7 +35,7 @@ export const PiecesDataSource = (() => {
     7: null,
     8: null,
     9: null,
-    10: null,
+    10: 'A4',
     11: 'A2',
   }
 
