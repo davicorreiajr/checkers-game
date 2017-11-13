@@ -1,7 +1,7 @@
 {
   "name": "checkers-game",
   "version": "0.0.0",
-  "private": true,
+  "author": "davicorreiajr",
   "engines": {
     "node": "6.10.3",
     "npm": "5.5.1",
